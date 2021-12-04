@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <VBox prefHeight="826.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Pane prefHeight="200.0" prefWidth="200.0">
-            <Label alignment="CENTER" graphicTextGap="10.0" layoutX="43.0" layoutY="64.0" stylesheets="@fullpackstyling.css" text="Jolicite" textFill="WHITE">
+        <Pane prefHeight="241.0" prefWidth="292.0">
+            <Label alignment="CENTER" graphicTextGap="10.0" layoutX="4.0" layoutY="47.0" stylesheets="@fullpackstyling.css" text="Programmation" textFill="WHITE">
                 <font>
-                    <Font name="Georgia" size="64.0" />
+                    <Font name="Lucida Console" size="36.0" />
                 </font>
                 <cursor>
                     <Cursor fx:constant="DEFAULT" />
@@ -20,7 +29,33 @@
                     <Glow />
                 </effect>
             </Label>
+         <Label alignment="CENTER" graphicTextGap="10.0" layoutX="37.0" layoutY="100.0" stylesheets="@fullpackstyling.css" text="Culturelle" textFill="WHITE">
+            <font>
+               <Font name="Lucida Console" size="36.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+            <effect>
+               <Glow />
+            </effect>
+         </Label>
         </Pane>
+      <Button fx:id="button_home" mnemonicParsing="false" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f35;" text="Accueil" textFill="WHITE">
+         <font>
+            <Font name="Lucida Console" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_form" mnemonicParsing="false" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Programmation de semaine" textFill="WHITE">
+         <font>
+            <Font name="Lucida Console" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="button_information" mnemonicParsing="false" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Informations" textFill="WHITE">
+         <font>
+            <Font name="Lucida Console" size="18.0" />
+         </font>
+      </Button>
     </VBox>
     <GridPane layoutX="334.0" layoutY="254.0" prefHeight="551.0" prefWidth="1023.0">
         <columnConstraints>
@@ -43,15 +78,15 @@
             </columnResizePolicy>
         </TableView>
         <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="1023.0">
-            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" stylesheets="@fullpackstyling.css" text="Programmer une semaine" textFill="WHITE">
+            <Button fx:id="button_form_small" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" stylesheets="@fullpackstyling.css" text="Programmer une semaine" textFill="WHITE">
                 <font>
                     <Font name="Lucida Console" size="14.0" />
                 </font>
             </Button>
         </HBox>
     </GridPane>
-    <Pane layoutX="292.0" layoutY="93.0" prefHeight="147.0" prefWidth="1108.0" style="-fx-background-color: #708090;" />
-    <Button alignment="CENTER" layoutX="1264.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" stylesheets="@fullpackstyling.css" text="Quitter" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <Pane layoutX="292.0" layoutY="93.0" prefHeight="147.0" prefWidth="1108.0" style="-fx-background-color: #708080;" />
+    <Button fx:id="button_exit" alignment="CENTER" layoutX="1264.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" stylesheets="@fullpackstyling.css" text="Quitter" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <font>
           <Font name="Lucida Console" size="14.0" />
         </font>
