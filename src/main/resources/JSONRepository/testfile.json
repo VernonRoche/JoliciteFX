@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Jolicite",
+    "scenes": [
+      {
+        "id": 0,
+        "capacity": 500,
+        "schedules": [[14,0], [18,30]],
+        "dates": [[10,12,2021], [28,12,2021]],
+        "events": [
+          {
+            "capacity": 200,
+            "spectacle": {
+              "name": "White Stripes",
+              "schedule": [15,25],
+              "date": [[15,12,2021], [15,12,2021]]
+            }
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "capacity": 300,
+        "schedules": [[13,30], [18,30]],
+        "dates": [[17,11,2021], [30,12,2021]],
+        "events": [
+          {
+            "capacity": 150,
+            "spectacle": {
+              "name": "Phantom of the Opera",
+              "schedule": [15,25],
+              "date": [[15,12,2021], [19,12,2021]]
+            }
+          }
+        ]
+      }
+    ]
+  }
+
+]
