@@ -1,3 +1,5 @@
+package com.example.jolicitefx;
+
 import Domain.*;
 
 import java.util.Arrays;
