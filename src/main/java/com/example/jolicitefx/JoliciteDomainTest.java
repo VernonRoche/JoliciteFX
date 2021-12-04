@@ -4,7 +4,7 @@ import Domain.*;
 
 import java.util.Arrays;
 
-public class Jolicite{
+public class JoliciteDomainTest {
 
     public static void main(String[] args) {
         int[] concert_date = {19,12,2021};

@@ -3,7 +3,7 @@ package com.example.jolicitefx;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class JoliciteUIController {
     @FXML
     private Label welcomeText;
 
