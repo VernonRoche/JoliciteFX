@@ -44,10 +44,9 @@ public class Scene {
     }
 
     public void addEvent(Event event){
-        return;
     }
 
     public boolean hasFreeWeekend() {
-        return;
+        return false;
     }
 }
