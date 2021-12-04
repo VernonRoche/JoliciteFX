@@ -35,4 +35,8 @@ public class Concert extends Spectacle{
     public int[] getSchedule(){
         return schedule.get();
     }
+
+    public String getType(){
+        return "Concert";
+    }
 }

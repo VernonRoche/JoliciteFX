@@ -1,5 +1,7 @@
 package Domain;
 
+import java.util.ArrayList;
+
 public class TheaterPiece extends Spectacle{
     private final DateInterval dates;
     private final Name name;
@@ -34,5 +36,9 @@ public class TheaterPiece extends Spectacle{
 
     public int[] getSchedule(){
         return this.schedule.get();
+    }
+
+    public String getType(){
+        return "Theater Piece";
     }
 }

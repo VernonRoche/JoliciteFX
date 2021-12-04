@@ -2,6 +2,7 @@ package Domain;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class CulturalBuilding {
     private final String name;
@@ -26,6 +27,28 @@ public class CulturalBuilding {
 
     public void removeScene(int id){
         scenes.removeIf(x -> x.getId() == id);
+    }
+
+    public void generateWeeklyProgram(ArrayList<String[]> string_events){
+        ArrayList<Event> events = new ArrayList<>();
+        for (String[] event_string:string_events){
+            events.add(new Event(event_string));
+        }
+
+        // Iterate over concerts to give them priority
+        Iterator<Event> itr = events.iterator();
+        while (itr.hasNext()) {
+            Event event = itr.next();
+            if (Objects.equals(event.getSpectacle().getType(), "Concert")){
+                for (Scene scene : this.scenes){
+                    if (scene.hasFreeWeekend()){
+                        scene.addEvent(event);
+                    }
+                }
+                itr.remove();
+            }
+
+        }
     }
 
 }

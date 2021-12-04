@@ -5,21 +5,21 @@ import java.util.ArrayList;
 public class Scene {
     private static int id=0;
     private final int capacity;
-    private ArrayList<Schedule> schedules = new ArrayList<>();
+    private Schedule[] schedules = new Schedule[2];
     private ArrayList<DateInterval> dates = new ArrayList<>();
     private ArrayList<Event> events = new ArrayList<>();
 
-    public Scene(int capacity, ArrayList<Schedule> schedules, ArrayList<DateInterval> dates, ArrayList<Event> events){
+    public Scene(int capacity, Schedule[] schedules, ArrayList<DateInterval> dates, ArrayList<Event> events){
         this.capacity=capacity;
-        this.schedules.addAll(schedules);
+        this.schedules=schedules;
         this.dates.addAll(dates);
         this.events.addAll(events);
         id++;
     }
 
-    public Scene(int capacity, ArrayList<Schedule> schedules, ArrayList<DateInterval> dates){
+    public Scene(int capacity, Schedule[] schedules, ArrayList<DateInterval> dates){
         this.capacity=capacity;
-        this.schedules.addAll(schedules);
+        this.schedules=schedules;
         this.dates.addAll(dates);
     }
 
@@ -31,7 +31,7 @@ public class Scene {
         return capacity;
     }
 
-    public ArrayList<Schedule> getSchedules() {
+    public Schedule[] getSchedules() {
         return schedules;
     }
 
@@ -41,5 +41,13 @@ public class Scene {
 
     public ArrayList<Event> getEvents() {
         return events;
+    }
+
+    public void addEvent(Event event){
+        return;
+    }
+
+    public boolean hasFreeWeekend() {
+        return;
     }
 }

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jolicitefx.JoliciteHomeController">
     <VBox prefHeight="826.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Pane prefHeight="241.0" prefWidth="292.0">
             <Label alignment="CENTER" graphicTextGap="10.0" layoutX="4.0" layoutY="47.0" stylesheets="@fullpackstyling.css" text="Programmation" textFill="WHITE">
@@ -46,12 +46,12 @@
             <Font name="Lucida Console" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="button_form" mnemonicParsing="false" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Programmation de semaine" textFill="WHITE">
+      <Button fx:id="button_form" mnemonicParsing="false" onAction="#goToForm" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Programmation de semaine" textFill="WHITE">
          <font>
             <Font name="Lucida Console" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="button_information" mnemonicParsing="false" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Informations" textFill="WHITE">
+      <Button fx:id="button_information" mnemonicParsing="false" onAction="#goToInformation" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Informations" textFill="WHITE">
          <font>
             <Font name="Lucida Console" size="18.0" />
          </font>
@@ -67,7 +67,7 @@
         </rowConstraints>
         <TableView prefHeight="487.0" prefWidth="1131.0" stylesheets="@fullpackstyling.css" GridPane.rowIndex="1">
             <columns>
-                <TableColumn prefWidth="110.0001220703125" text="Salle" />
+                <TableColumn fx:id="home_schedule" prefWidth="110.0001220703125" text="Salle" />
                 <TableColumn prefWidth="301.99993896484375" text="Evenement" />
                 <TableColumn minWidth="0.0" prefWidth="102.6666259765625" text="Date" />
                 <TableColumn prefWidth="80.666748046875" text="Heure" />
@@ -78,7 +78,7 @@
             </columnResizePolicy>
         </TableView>
         <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="1023.0">
-            <Button fx:id="button_form_small" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" stylesheets="@fullpackstyling.css" text="Programmer une semaine" textFill="WHITE">
+            <Button fx:id="button_form_small" mnemonicParsing="false" onAction="#goToForm" prefHeight="37.0" prefWidth="206.0" stylesheets="@fullpackstyling.css" text="Programmer une semaine" textFill="WHITE">
                 <font>
                     <Font name="Lucida Console" size="14.0" />
                 </font>
@@ -86,7 +86,7 @@
         </HBox>
     </GridPane>
     <Pane layoutX="292.0" layoutY="93.0" prefHeight="147.0" prefWidth="1108.0" style="-fx-background-color: #708080;" />
-    <Button fx:id="button_exit" alignment="CENTER" layoutX="1264.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" stylesheets="@fullpackstyling.css" text="Quitter" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <Button fx:id="button_exit" alignment="CENTER" layoutX="1264.0" layoutY="1.0" mnemonicParsing="false" onAction="#exitApplication" prefHeight="25.0" prefWidth="111.0" stylesheets="@fullpackstyling.css" text="Quitter" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <font>
           <Font name="Lucida Console" size="14.0" />
         </font>

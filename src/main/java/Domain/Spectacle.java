@@ -7,4 +7,6 @@ public abstract class Spectacle {
     public abstract String getName();
 
     public abstract int[] getSchedule();
+
+    public abstract String getType();
 }
