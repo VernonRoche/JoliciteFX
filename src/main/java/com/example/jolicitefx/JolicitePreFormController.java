@@ -3,23 +3,27 @@ package com.example.jolicitefx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-public class JoliciteHomeController {
+public class JolicitePreFormController {
     @FXML
-    private Button button_pre_form_small;
+    private Button button_small_form;
     @FXML
-    private Button button_pre_form;
+    private Button button_form;
     @FXML
     private Button button_exit;
     @FXML
     private Button button_information;
 
+    public void goToHome(ActionEvent event) throws IOException {
+        JoliciteApplication app = new JoliciteApplication();
+        app.changeScene("home.fxml");
+    }
+
     public void goToForm(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
-        app.changeScene("weekly_pre_form.fxml");
+        app.changeScene("weekly_form.fxml");
     }
 
     public void goToInformation(ActionEvent event) throws IOException {

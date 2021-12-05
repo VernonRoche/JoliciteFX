@@ -35,12 +35,19 @@ public class JoliciteFormController {
     private ComboBox<String> spectacle_type;
     @FXML
     private TextField spectacle_end_time;
+    @FXML
+    private Button button_pre_form;
 
     private ArrayList<String[]> events_to_program = new ArrayList<>();
 
     public void goToHome(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.changeScene("home.fxml");
+    }
+
+    public void goToForm(ActionEvent event) throws IOException {
+        JoliciteApplication app = new JoliciteApplication();
+        app.changeScene("weekly_pre_form.fxml");
     }
 
     public void goToInformation(ActionEvent event) throws IOException {
