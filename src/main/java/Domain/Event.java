@@ -1,5 +1,6 @@
 package Domain;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class Event {
@@ -12,29 +13,30 @@ public class Event {
     }
 
     public Event(String[] event_string){
-        if (event_string.length!=6){
+        if (event_string.length!=7){
             throw new IllegalArgumentException("Wrong event string format provided.");
         }
         String name = event_string[1];
-        String[] split_date_string = event_string[3].split("/");
-        String[] split_end_date_string = event_string[4].split("/");
-        String[] split_schedule_string = event_string[5].split("-");
-        int[] date = new int[3];
-        int[] end_date = new int[3];
-        int[] schedule = new int[2];
-        for(int i=0;i<split_date_string.length;i++){
-            date[i] = Integer.parseInt(split_date_string[i]);
-            end_date[i] = Integer.parseInt(split_date_string[i]);
-        }
-        for(int i=0;i< split_schedule_string.length;i++){
-            schedule[i] = Integer.parseInt(split_schedule_string[i]);
+        String start_day_string = event_string[3].toUpperCase();
+        String end_day_string = event_string[4].toUpperCase();
+        String[] split_time_string = event_string[5].split("-");
+        String[] split_end_time_string = event_string[6].split("-");
+
+
+        Day start_day = Day.valueOf(start_day_string);
+        Day end_day = Day.valueOf(end_day_string);
+        int[] start_time = new int[2];
+        int[] end_time = new int[2];
+        for(int i=0;i< split_time_string.length;i++){
+            start_time[i] = Integer.parseInt(split_time_string[i]);
+            end_time[i] = Integer.parseInt(split_end_time_string[i]);
         }
         Spectacle spectacle;
         if (Objects.equals(event_string[0], "Concert")){
-            spectacle = new Concert(date,name,schedule);
+            spectacle = new Concert(start_day,name,start_time, end_time);
         }
         else{
-            spectacle = new TheaterPiece(new int[][]{date, end_date},name,schedule);
+            spectacle = new TheaterPiece(new Day[]{start_day, end_day},name,start_time, end_time);
         }
         this.spectacle=spectacle;
         this.capacity_needed=Integer.parseInt(event_string[2]);

@@ -109,12 +109,13 @@
            </font>
         </Label>
         <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="97.0" layoutY="381.0" startX="-100.0" />
-        <TextField fx:id="spectacle_schedule" alignment="CENTER" layoutX="424.0" layoutY="323.0" prefHeight="39.0" prefWidth="217.0" promptText="heure-minute" />
+        <TextField fx:id="spectacle_start_time" alignment="CENTER" layoutX="424.0" layoutY="323.0" prefHeight="39.0" prefWidth="217.0" promptText="heure-minute" />
         <Button fx:id="button_next" layoutX="429.0" layoutY="407.0" mnemonicParsing="false" onAction="#nextEvent" prefHeight="39.0" prefWidth="207.0" stylesheets="@fullpackstyling.css" text="Prochain Evenement" textFill="WHITE">
            <font>
                <Font size="18.0" />
            </font>
         </Button>
         <TextField fx:id="spectacle_end_date" alignment="CENTER" layoutX="689.0" layoutY="254.0" prefHeight="39.0" prefWidth="243.0" promptText="laisser vide si concert, sinon date de fin" />
+      <TextField fx:id="spectacle_end_time" alignment="CENTER" layoutX="689.0" layoutY="324.0" prefHeight="39.0" prefWidth="243.0" promptText="heure-minute de fin" />
     </AnchorPane>
 </AnchorPane>

@@ -1,14 +1,14 @@
 package Domain;
 
 public class Concert extends Spectacle{
-    private final DateInterval date;
+    private final Day day;
     private final Name artist_name;
-    private final Schedule schedule;
+    private final Time time;
 
-    public Concert(int[] date, String artist_name, int[] schedule){
-        this.date= new DateInterval(date[0],date[1],date[2],date[0],date[1],date[2]);
+    public Concert(Day day, String artist_name, int[] start_time, int[] end_time){
+        this.day = day;
         this.artist_name=new Name(artist_name);
-        this.schedule=new Schedule(schedule[0],schedule[1]);
+        this.time =new Time(start_time, end_time);
     }
 
     private class Name{
@@ -24,16 +24,16 @@ public class Concert extends Spectacle{
     }
 
 
-    public int[][] getDate() {
-        return date.get();
+    public Day[] getDay() {
+        return new Day[]{day, day};
     }
 
     public String getName() {
         return artist_name.get();
     }
 
-    public int[] getSchedule(){
-        return schedule.get();
+    public Time getTime(){
+        return time;
     }
 
     public String getType(){

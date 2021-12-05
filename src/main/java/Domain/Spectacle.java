@@ -2,11 +2,11 @@ package Domain;
 
 public abstract class Spectacle {
 
-    public abstract int[][] getDate();
+    public abstract Day[] getDay();
 
     public abstract String getName();
 
-    public abstract int[] getSchedule();
+    public abstract Time getTime();
 
     public abstract String getType();
 }

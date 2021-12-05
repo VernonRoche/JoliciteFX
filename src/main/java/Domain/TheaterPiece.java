@@ -1,16 +1,14 @@
 package Domain;
 
-import java.util.ArrayList;
-
 public class TheaterPiece extends Spectacle{
-    private final DateInterval dates;
+    private final Day[] dates;
     private final Name name;
-    private final Schedule schedule;
+    private final Time time;
 
-    public TheaterPiece(int[][] dates, String name, int[] schedule){
-        this.dates= new DateInterval(dates[0][0],dates[0][1],dates[0][2],dates[1][0],dates[1][1],dates[1][2]);
+    public TheaterPiece(Day[] dates, String name, int[] start_time, int[] end_time){
+        this.dates= dates;
         this.name=new Name(name);
-        this.schedule=new Schedule(schedule[0],schedule[1]);
+        this.time =new Time(start_time, end_time);
     }
 
     private class Name{
@@ -26,17 +24,18 @@ public class TheaterPiece extends Spectacle{
     }
 
 
-    public int[][] getDate() {
-        return dates.get();
+    public Day[] getDay() {
+        return dates;
     }
 
     public String getName() {
         return name.get();
     }
 
-    public int[] getSchedule(){
-        return this.schedule.get();
+    public Time getTime(){
+        return this.time;
     }
+
 
     public String getType(){
         return "Theater Piece";

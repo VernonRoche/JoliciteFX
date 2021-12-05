@@ -1,16 +1,21 @@
 package Domain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
+import javafx.util.Pair;
+
+import java.util.*;
 
 public class CulturalBuilding {
     private final String name;
-    private ArrayList<Scene> scenes;
+    private ArrayList<Pair<Integer, Schedule>> available_schedules = new ArrayList<>();
+    private ArrayList<Pair<Integer, Schedule>> reserved_schedules = new ArrayList<>();
+    private ArrayList<Scene> scenes = new ArrayList<>();
+    private Scene reserved_scene;
 
-    public CulturalBuilding(String name, ArrayList<Scene> scenes){
+    public CulturalBuilding(String name, ArrayList<Scene> scenes, ArrayList<Pair<Integer, Schedule>> available_schedules, ArrayList<Pair<Integer, Schedule>> reserved_schedules){
         this.name=name;
-        this.scenes=scenes;
+        this.scenes.addAll(scenes);
+        this.reserved_schedules.addAll(reserved_schedules);
+        this.available_schedules.addAll(available_schedules);
     }
 
     public String getName() {
@@ -29,25 +34,31 @@ public class CulturalBuilding {
         scenes.removeIf(x -> x.getId() == id);
     }
 
-    public void generateWeeklyProgram(ArrayList<String[]> string_events){
-        ArrayList<Event> events = new ArrayList<>();
-        for (String[] event_string:string_events){
-            events.add(new Event(event_string));
+    public void setUpReservedScene(Scene scene){
+        this.reserved_scene=scene;
+    }
+
+    public void programEvent(Event event){
+        Iterator<Pair<Integer, Schedule>> itr = available_schedules.iterator();
+        while (itr.hasNext()){
+            Pair<Integer, Schedule> available_schedule = itr.next();
+            int scene_id = available_schedule.getKey();
+            Schedule schedule = available_schedule.getValue();
+            if (schedule.getDay() == event.getSpectacle().getDay()[0]){
+                if (schedule.getTime().isTimeWithinBoundaries(event.getSpectacle().getTime())){
+                    Pair<Integer, Schedule> reserved_schedule = new Pair<>(scene_id, schedule);
+                    reserved_schedules.add(reserved_schedule);
+                    available_schedules.remove(available_schedule);
+                }
+            }
         }
 
-        // Iterate over concerts to give them priority
-        Iterator<Event> itr = events.iterator();
-        while (itr.hasNext()) {
-            Event event = itr.next();
-            if (Objects.equals(event.getSpectacle().getType(), "Concert")){
-                for (Scene scene : this.scenes){
-                    if (scene.hasFreeWeekend()){
-                        scene.addEvent(event);
-                    }
-                }
-                itr.remove();
-            }
+    }
 
+    public void generateWeeklyProgram(ArrayList<String[]> string_events){
+        for (String[] string_event : string_events){
+            Event new_event = new Event(string_event);
+            programEvent(new_event);
         }
     }
 

@@ -30,9 +30,11 @@ public class JoliciteFormController {
     @FXML
     private TextField spectacle_end_date;
     @FXML
-    private TextField spectacle_schedule;
+    private TextField spectacle_start_time;
     @FXML
     private ComboBox<String> spectacle_type;
+    @FXML
+    private TextField spectacle_end_time;
 
     private ArrayList<String[]> events_to_program = new ArrayList<>();
 
@@ -51,19 +53,21 @@ public class JoliciteFormController {
     }
 
     public void nextEvent(ActionEvent event){
-        String[] event_to_program = new String[6];
-        event_to_program[0] = spectacle_type.getValue().toString();
-        event_to_program[1] = spectacle_name.getText().toString();
-        event_to_program[2] = spectacle_capacity.getText().toString();
-        event_to_program[3] = spectacle_date.getText().toString();
-        event_to_program[4] = spectacle_end_date.getText().toString();
-        event_to_program[5] = spectacle_schedule.getText().toString();
+        String[] event_to_program = new String[7];
+        event_to_program[0] = spectacle_type.getValue();
+        event_to_program[1] = spectacle_name.getText();
+        event_to_program[2] = spectacle_capacity.getText();
+        event_to_program[3] = spectacle_date.getText();
+        event_to_program[4] = spectacle_end_date.getText();
+        event_to_program[5] = spectacle_start_time.getText();
+        event_to_program[6] = spectacle_end_time.getText();
         events_to_program.add(event_to_program);
         spectacle_name.setText("");
         spectacle_capacity.setText("");
         spectacle_date.setText("");
         spectacle_end_date.setText("");
-        spectacle_schedule.setText("");
+        spectacle_start_time.setText("");
+        spectacle_end_time.setText("");
     }
 
     public void submitProgram(ActionEvent event){
