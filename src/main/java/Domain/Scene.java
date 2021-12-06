@@ -39,4 +39,13 @@ public class Scene {
     public boolean hasFreeWeekend() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Scene{" +
+                "id " + id +
+                "capacity=" + capacity +
+                ", events=" + events +
+                '}';
+    }
 }

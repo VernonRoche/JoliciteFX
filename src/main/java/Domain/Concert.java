@@ -39,4 +39,13 @@ public class Concert extends Spectacle{
     public String getType(){
         return "Concert";
     }
+
+    @Override
+    public String toString() {
+        return "Concert{" +
+                "day=" + day +
+                ", artist_name=" + artist_name +
+                ", time=" + time +
+                '}';
+    }
 }

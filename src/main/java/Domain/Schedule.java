@@ -22,4 +22,13 @@ public class Schedule {
     public Time getTime() {
         return time;
     }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "scene_id=" + scene_id +
+                ", day=" + day +
+                ", time=" + time +
+                '}';
+    }
 }

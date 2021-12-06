@@ -53,4 +53,12 @@ public class Event {
     public void setCapacity_needed(int capacity_needed) {
         this.capacity_needed = capacity_needed;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "spectacle=" + spectacle +
+                ", capacity_needed=" + capacity_needed +
+                '}';
+    }
 }

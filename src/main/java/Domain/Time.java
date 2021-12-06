@@ -1,5 +1,7 @@
 package Domain;
 
+import java.util.Arrays;
+
 public class Time {
     private final int[] start_time;
     private final int[] end_time;
@@ -48,5 +50,21 @@ public class Time {
             return end_time[0] > time.end_time[0] || (end_time[0] == time.end_time[0] && end_time[1] >= time.end_time[1]);
         }
         return false;
+    }
+
+    public boolean startTimeEquals(Time time){
+        return this.start_time[0] == time.start_time[0] && this.start_time[1] == time.start_time[1];
+    }
+
+    public boolean endTimeEquals(Time time){
+        return this.end_time[0] == time.end_time[0] && this.end_time[1] == time.end_time[1];
+    }
+
+    @Override
+    public String toString() {
+        return "Time{" +
+                "start_time=" + Arrays.toString(start_time) +
+                ", end_time=" + Arrays.toString(end_time) +
+                '}';
     }
 }

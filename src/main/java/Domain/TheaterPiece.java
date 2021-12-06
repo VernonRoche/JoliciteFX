@@ -1,5 +1,7 @@
 package Domain;
 
+import java.util.Arrays;
+
 public class TheaterPiece extends Spectacle{
     private final Day[] dates;
     private final Name name;
@@ -39,5 +41,14 @@ public class TheaterPiece extends Spectacle{
 
     public String getType(){
         return "Theater Piece";
+    }
+
+    @Override
+    public String toString() {
+        return "TheaterPiece{" +
+                "dates=" + Arrays.toString(dates) +
+                ", name=" + name +
+                ", time=" + time +
+                '}';
     }
 }
