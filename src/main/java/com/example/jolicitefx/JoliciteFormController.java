@@ -18,7 +18,7 @@ public class JoliciteFormController {
     @FXML
     private Button button_exit;
     @FXML
-    private Button button_information;
+    private Button button_scene;
     @FXML
     private Button button_home;
     @FXML
@@ -50,9 +50,9 @@ public class JoliciteFormController {
         app.changeScene("weekly_pre_form.fxml");
     }
 
-    public void goToInformation(ActionEvent event) throws IOException {
+    public void goToScene(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
-        app.changeScene("information.fxml");
+        app.changeScene("scene.fxml");
     }
 
     public void exitApplication(ActionEvent event){
