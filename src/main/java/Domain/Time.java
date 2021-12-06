@@ -52,11 +52,11 @@ public class Time {
         return false;
     }
 
-    public boolean startTimeEquals(Time time){
+    public boolean isStartTimeEqual(Time time){
         return this.start_time[0] == time.start_time[0] && this.start_time[1] == time.start_time[1];
     }
 
-    public boolean endTimeEquals(Time time){
+    public boolean isEndTimeEqual(Time time){
         return this.end_time[0] == time.end_time[0] && this.end_time[1] == time.end_time[1];
     }
 

@@ -46,9 +46,19 @@ public class CulturalBuilding {
             if (available_schedule.getDay() == event.getSpectacle().getDay()[0]){
                 if (available_schedule.getTime().isTimeWithinBoundaries(event.getSpectacle().getTime())){
                     reserved_schedules.add(available_schedule);
-                    //if(available_schedule.getTime().getStart_time())
-                    //available_schedules.remove(available_schedule);
                     itr.remove();
+                    if(!available_schedule.getTime().isStartTimeEqual(event.getSpectacle().getTime())){
+                        int[] start_time = available_schedule.getTime().getStart_time();
+                        int[] end_time = event.getSpectacle().getTime().getStart_time();
+                        Schedule schedule = new Schedule(scene_id,available_schedule.getDay(),new Time(start_time,end_time));
+                        available_schedules.add(schedule);
+                    }
+                    if(!available_schedule.getTime().isEndTimeEqual(event.getSpectacle().getTime())){
+                        int[] start_time = event.getSpectacle().getTime().getEnd_time();
+                        int[] end_time = available_schedule.getTime().getEnd_time();
+                        Schedule schedule = new Schedule(scene_id,available_schedule.getDay(),new Time(start_time,end_time));
+                        available_schedules.add(schedule);
+                    }
                     break;
                 }
             }
