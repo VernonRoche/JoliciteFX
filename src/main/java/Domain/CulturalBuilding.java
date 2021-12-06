@@ -4,14 +4,14 @@ import javafx.util.Pair;
 
 import java.util.*;
 
-public class CulturalBuilding {
+public class CulturalBuilding { //ArrayList<Pair<Integer,>>
     private final String name;
-    private ArrayList<Schedule> available_schedules = new ArrayList<>();
-    private ArrayList<Schedule> reserved_schedules = new ArrayList<>();
+    private ArrayList<Pair<Integer,ArrayList<Schedule>>> available_schedules = new ArrayList<>();
+    private ArrayList<Pair<Integer,ArrayList<Schedule>>> reserved_schedules = new ArrayList<>();
     private ArrayList<Scene> scenes = new ArrayList<>();
     private Scene reserved_scene;
 
-    public CulturalBuilding(String name, ArrayList<Scene> scenes, ArrayList<Schedule> available_schedules, ArrayList<Schedule> reserved_schedules){
+    public CulturalBuilding(String name, ArrayList<Scene> scenes, ArrayList<Pair<Integer,ArrayList<Schedule>>> available_schedules, ArrayList<Pair<Integer,ArrayList<Schedule>>> reserved_schedules){
         this.name=name;
         this.scenes.addAll(scenes);
         this.reserved_schedules.addAll(reserved_schedules);
@@ -38,8 +38,8 @@ public class CulturalBuilding {
         this.reserved_scene=scene;
     }
 
-    public void programEvent(Event event){
-        Iterator<Schedule> itr = available_schedules.iterator();
+    public void programEvent(Event event, int week){
+        Iterator<Pair<Integer,Schedule>> itr_week = available_schedules.iterator();
         while (itr.hasNext()){
             Schedule available_schedule = itr.next();
             int scene_id = available_schedule.getScene_id();
