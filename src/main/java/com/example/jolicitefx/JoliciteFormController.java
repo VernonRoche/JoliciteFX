@@ -78,8 +78,9 @@ public class JoliciteFormController {
         spectacle_end_time.setText("");
     }
 
-    public void submitProgram(ActionEvent event){
+    public void submitProgram(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.programWeek(events_to_program);
+        goToHome(event);
     }
 }
