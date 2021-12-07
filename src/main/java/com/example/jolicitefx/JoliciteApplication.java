@@ -21,7 +21,7 @@ public class JoliciteApplication extends Application {
         stg = primaryStage;
         primaryStage.setResizable(true);
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
-        primaryStage.setTitle("Falcon");
+        primaryStage.setTitle("Cultural Programming");
         primaryStage.setScene(new Scene(root, 1400, 820));
         primaryStage.show();
         cultural_building = new CulturalBuilding("Jolicite",
