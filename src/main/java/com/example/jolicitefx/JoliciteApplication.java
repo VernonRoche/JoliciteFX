@@ -34,7 +34,7 @@ public class JoliciteApplication extends Application {
     }
 
     public void addCulturalBuildingScene(int capacity){
-        culturalBuilding.addScene(new Domain.Scene(capacity));
+        cultural_building.addScene(new Domain.Scene(capacity));
     }
 
     public void programWeek(ArrayList<String[]> events){
