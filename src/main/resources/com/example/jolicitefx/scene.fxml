@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jolicitefx.JolicitePreFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jolicitefx.JoliciteSceneController">
     <VBox prefHeight="826.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Pane prefHeight="241.0" prefWidth="292.0">
             <Label alignment="CENTER" graphicTextGap="10.0" layoutX="59.0" layoutY="50.0" stylesheets="@fullpackstyling.css" text="Cultural" textFill="WHITE">
@@ -42,12 +42,12 @@
             <Font name="Lucida Console" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="button_pre_form" mnemonicParsing="false" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f35;" text="Schedule Week" textFill="WHITE">
+      <Button fx:id="button_pre_form" mnemonicParsing="false" onAction="#goToForm" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Schedule Week" textFill="WHITE">
          <font>
             <Font name="Lucida Console" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="button_scene" mnemonicParsing="false" onAction="#goToScene" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Scene Management" textFill="WHITE">
+      <Button fx:id="button_information" mnemonicParsing="false" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f35;" text="Scene Management" textFill="WHITE">
          <font>
             <Font name="Lucida Console" size="18.0" />
          </font>
@@ -60,14 +60,14 @@
         </font>
     </Button>
     <AnchorPane layoutX="313.0" layoutY="257.0" prefHeight="475.0" prefWidth="1065.0">
-        <Label layoutX="337.0" layoutY="35.0" text="Choose the week to schedule">
+        <Label layoutX="308.0" layoutY="40.0" text="Enter your new scene's capacity">
            <font>
                <Font name="Lucida Console" size="24.0" />
            </font>
         </Label>
-        <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="101.0" layoutY="165.0" startX="-100.0" />
-        <TextField fx:id="schedule_week" alignment="CENTER" layoutX="397.0" layoutY="104.0" prefHeight="53.0" prefWidth="270.0" promptText="Week: integer" />
-      <Button fx:id="button_form" layoutX="405.0" layoutY="301.0" mnemonicParsing="false" onAction="#goToForm" prefHeight="61.0" prefWidth="255.0" stylesheets="@fullpackstyling.css" text="Next" textFill="WHITE">
+        <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="101.0" layoutY="172.0" startX="-100.0" />
+        <TextField fx:id="scene_capacity" alignment="CENTER" layoutX="397.0" layoutY="104.0" prefHeight="53.0" prefWidth="270.0" promptText="integer" />
+      <Button fx:id="button_add_scene" layoutX="405.0" layoutY="301.0" mnemonicParsing="false" onAction="#addScene" prefHeight="61.0" prefWidth="255.0" stylesheets="@fullpackstyling.css" text="Create" textFill="WHITE">
          <font>
             <Font name="Lucida Console" size="24.0" />
          </font>

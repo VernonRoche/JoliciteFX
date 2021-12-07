@@ -50,7 +50,7 @@
             <Font name="Lucida Console" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="button_information" mnemonicParsing="false" onAction="#goToInformation" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Scene Management" textFill="WHITE">
+      <Button fx:id="button_scene" mnemonicParsing="false" onAction="#goToScene" prefHeight="71.0" prefWidth="292.0" style="-fx-background-color: #2f4f4f;" text="Scene Management" textFill="WHITE">
          <font>
             <Font name="Lucida Console" size="18.0" />
          </font>
