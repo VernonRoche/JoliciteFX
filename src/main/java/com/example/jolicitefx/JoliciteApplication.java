@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class JoliciteApplication extends Application {
 
     private static Stage stg;
-    private static CulturalBuilding cultural_building;
+    public static CulturalBuilding cultural_building;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -35,6 +35,10 @@ public class JoliciteApplication extends Application {
 
     public void addCulturalBuildingScene(String[] scene_information){
         cultural_building.addScene(scene_information);
+    }
+
+    public void addWeek(int week){
+        cultural_building.addWeek(week);
     }
 
     public void programWeek(ArrayList<String[]> events){

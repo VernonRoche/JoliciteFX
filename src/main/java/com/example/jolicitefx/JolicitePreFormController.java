@@ -4,6 +4,7 @@ import Domain.CulturalBuilding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
@@ -16,6 +17,8 @@ public class JolicitePreFormController {
     private Button button_exit;
     @FXML
     private Button button_scene;
+    @FXML
+    private TextField schedule_week;
 
     public void goToHome(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
@@ -24,6 +27,7 @@ public class JolicitePreFormController {
 
     public void goToForm(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
+        app.addWeek(Integer.parseInt(schedule_week.getText()));
         app.changeScene("weekly_form.fxml");
     }
 
