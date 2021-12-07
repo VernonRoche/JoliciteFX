@@ -26,12 +26,39 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         return scenes;
     }
 
-    public void addScene(Scene scene){
-        this.scenes.add(scene);
-    }
-
     public void addScene(String[] scene){
-        //quelque chose
+        if (scene.length!=4){
+            throw new IllegalArgumentException("Wrong scene string input.");
+        }
+        int capacity = Integer.parseInt(scene[0]);
+        String[] start_time_string = scene[1].split("-");
+        String[] end_time_string = scene[2].split("-");
+        int start_week = Integer.parseInt(scene[3]);
+
+        int[] start_time = new int[2];
+        int[] end_time = new int[2];
+        for(int i=0;i< start_time_string.length;i++){
+            start_time[i] = Integer.parseInt(start_time_string[i]);
+            end_time[i] = Integer.parseInt(end_time_string[i]);
+        }
+
+        Scene new_scene = new Scene(capacity);
+        this.scenes.add(new_scene);
+        int new_scene_id = new_scene.getId();
+
+        // Iterate through all weeks starting from start_week up to final week of year (53rd week)
+        for(int week=start_week; week<54 ; week++){
+
+            // For each week, add a schedule for each day with start_time and end_time
+            Day[] possible_days = Day.values();
+            ArrayList<Schedule> available_week_schedules = new ArrayList<>();
+            for(int day=0; day<possible_days.length ; day++){
+                Schedule new_schedule = new Schedule(new_scene_id, possible_days[day], new Time(start_time,end_time));
+                available_week_schedules.add(new_schedule);
+            }
+
+            available_schedules.add(new Pair<>(week, available_week_schedules));
+        }
     }
 
     public void removeScene(int id){
