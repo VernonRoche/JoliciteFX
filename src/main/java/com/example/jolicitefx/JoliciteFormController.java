@@ -1,5 +1,6 @@
 package com.example.jolicitefx;
 
+import Domain.CulturalBuilding;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;

@@ -14,16 +14,18 @@ import java.util.ArrayList;
 public class JoliciteApplication extends Application {
 
     private static Stage stg;
-    private static CulturalBuilding culturalBuilding;
+    private static CulturalBuilding cultural_building;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         stg = primaryStage;
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         primaryStage.setTitle("Falcon");
         primaryStage.setScene(new Scene(root, 1400, 820));
         primaryStage.show();
+        cultural_building = new CulturalBuilding("Jolicite",
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     public void changeScene(String fxml) throws IOException {
@@ -32,7 +34,7 @@ public class JoliciteApplication extends Application {
     }
 
     public void programWeek(ArrayList<String[]> events){
-        culturalBuilding.generateWeeklyProgram(events);
+        cultural_building.generateWeeklyProgram(events,1);
     }
 
     public static void main(String[] args) {

@@ -22,11 +22,11 @@ public class JoliciteDomainTest {
         System.out.println("test_scenes = " + test_scenes);
         test_available_schedules.add(test_schedule);
         System.out.println("test_available_schedules = " + test_available_schedules);
-        CulturalBuilding test_cultural_building = new CulturalBuilding("Jolicite",
+        /*CulturalBuilding test_cultural_building = new CulturalBuilding("Jolicite",
                 test_scenes, test_available_schedules, new ArrayList<>());
         System.out.println("test_cultural_building = " + test_cultural_building);
         test_cultural_building.programEvent(test_event);
         System.out.println("Après test_cultural_building = " + test_cultural_building);
-        System.out.println(test_cultural_building.getName());
+        System.out.println(test_cultural_building.getName());*/
     }
 }
