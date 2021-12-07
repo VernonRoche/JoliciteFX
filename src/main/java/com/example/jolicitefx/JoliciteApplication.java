@@ -33,8 +33,8 @@ public class JoliciteApplication extends Application {
         stg.getScene().setRoot(pane);
     }
 
-    public void addCulturalBuildingScene(int capacity){
-        cultural_building.addScene(new Domain.Scene(capacity));
+    public void addCulturalBuildingScene(String[] scene_information){
+        cultural_building.addScene(scene_information);
     }
 
     public void programWeek(ArrayList<String[]> events){

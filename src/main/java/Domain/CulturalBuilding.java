@@ -30,6 +30,10 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         this.scenes.add(scene);
     }
 
+    public void addScene(String[] scene){
+        //quelque chose
+    }
+
     public void removeScene(int id){
         scenes.removeIf(x -> x.getId() == id);
     }

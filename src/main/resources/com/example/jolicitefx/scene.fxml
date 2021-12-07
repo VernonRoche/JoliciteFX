@@ -12,7 +12,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jolicitefx.JoliciteSceneController">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0">
@@ -64,18 +63,39 @@
               </font>
           </Button>
           <AnchorPane layoutX="313.0" layoutY="257.0" prefHeight="475.0" prefWidth="1065.0">
-              <Label layoutX="308.0" layoutY="40.0" text="Enter your new scene's capacity">
+              <Label layoutX="14.0" layoutY="23.0" text="Enter your new scene's capacity">
                  <font>
-                     <Font name="Lucida Console" size="24.0" />
+                     <Font name="Lucida Console" size="18.0" />
                  </font>
               </Label>
-              <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="101.0" layoutY="172.0" startX="-100.0" />
-              <TextField fx:id="scene_capacity" alignment="CENTER" layoutX="397.0" layoutY="104.0" prefHeight="53.0" prefWidth="270.0" promptText="integer" />
-            <Button fx:id="button_add_scene" layoutX="405.0" layoutY="301.0" mnemonicParsing="false" onAction="#addScene" prefHeight="61.0" prefWidth="255.0" stylesheets="@fullpackstyling.css" text="Create" textFill="WHITE">
+              <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="101.0" layoutY="65.0" startX="-100.0" />
+              <TextField fx:id="scene_capacity" alignment="CENTER" layoutX="516.0" layoutY="11.0" prefHeight="35.0" prefWidth="270.0" promptText="integer" />
+            <Button fx:id="button_add_scene" layoutX="405.0" layoutY="337.0" mnemonicParsing="false" onAction="#addScene" prefHeight="61.0" prefWidth="255.0" stylesheets="@fullpackstyling.css" text="Create" textFill="WHITE">
                <font>
                   <Font name="Lucida Console" size="24.0" />
                </font>
             </Button>
+            <Label layoutX="13.0" layoutY="97.0" text="Enter your new scene's opening hour">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+            </Label>
+            <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="100.0" layoutY="139.0" startX="-100.0" />
+            <TextField fx:id="scene_start_time" alignment="CENTER" layoutX="515.0" layoutY="85.0" prefHeight="35.0" prefWidth="270.0" promptText="hour-minute" />
+            <Label layoutX="13.0" layoutY="176.0" text="Enter your new scene's closing hour">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+            </Label>
+            <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="100.0" layoutY="218.0" startX="-100.0" />
+            <TextField fx:id="scene_end_time" alignment="CENTER" layoutX="515.0" layoutY="164.0" prefHeight="35.0" prefWidth="270.0" promptText="hour-minute" />
+            <Label layoutX="12.0" layoutY="246.0" text="Enter your new scene's first opening week">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+            </Label>
+            <Line endX="964.3333740234375" endY="-3.0517578125E-5" layoutX="99.0" layoutY="288.0" startX="-100.0" />
+            <TextField fx:id="scene_opening_week" alignment="CENTER" layoutX="514.0" layoutY="234.0" prefHeight="35.0" prefWidth="270.0" promptText="integer" />
           </AnchorPane>
       </AnchorPane>
    </content>
