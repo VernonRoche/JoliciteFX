@@ -7,11 +7,11 @@ import java.util.*;
 public class CulturalBuilding { //ArrayList<Pair<Integer,>>
     private final String name;
     private ArrayList<Pair<Integer,ArrayList<Schedule>>> available_schedules = new ArrayList<>();
-    private ArrayList<Pair<Integer,ArrayList<Schedule>>> reserved_schedules = new ArrayList<>();
+    private ArrayList<Pair<Integer,ArrayList<Pair<Schedule,Event>>>> reserved_schedules = new ArrayList<>();
     private ArrayList<Scene> scenes = new ArrayList<>();
     private Scene reserved_scene;
 
-    public CulturalBuilding(String name, ArrayList<Scene> scenes, ArrayList<Pair<Integer,ArrayList<Schedule>>> available_schedules, ArrayList<Pair<Integer,ArrayList<Schedule>>> reserved_schedules){
+    public CulturalBuilding(String name, ArrayList<Scene> scenes, ArrayList<Pair<Integer,ArrayList<Schedule>>> available_schedules, ArrayList<Pair<Integer,ArrayList<Pair<Schedule, Event>>>> reserved_schedules){
         this.name=name;
         this.scenes.addAll(scenes);
         this.reserved_schedules.addAll(reserved_schedules);
@@ -73,64 +73,87 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         if (week_number<1 || week_number>53){
             throw new IllegalArgumentException("Wrong week number input");
         }
-        available_schedules.add(new Pair<>(week_number, new ArrayList<>()));
         reserved_schedules.add(new Pair<>(week_number, new ArrayList<>()));
     }
 
     public void programEvent(Event event, int week){
         // Iterate through all weeks
-        Iterator<Pair<Integer, ArrayList<Schedule>>> week_iterator = available_schedules.iterator();
+        System.out.println("Available Schedules: " + available_schedules + "\n");
+        System.out.println("AVANT:" + reserved_schedules);
+        System.out.println("Asked week "+week+"\n");
+        ListIterator<Pair<Integer, ArrayList<Schedule>>> week_iterator = available_schedules.listIterator();
         while (week_iterator.hasNext()){
+            System.out.println("Entered first while loop\n");
             Pair<Integer, ArrayList<Schedule>> week_schedules =week_iterator.next();
             int week_key = week_schedules.getKey();
 
-            // Check if week exists, else create it and proceed to that week's program
+            // Go to week asked
             if (week_key==week) {
+                System.out.println("Found week to insert\n");
                 ArrayList<Schedule> week_available_schedules = week_schedules.getValue();
-                Iterator<Schedule> iterator = week_available_schedules.iterator();
+                ListIterator<Schedule> available_schedule_iterator = week_available_schedules.listIterator();
 
                 // Iterate through the week's available schedules
-                while (iterator.hasNext()) {
-                    Schedule available_schedule = iterator.next();
+                while (available_schedule_iterator.hasNext()) {
+                    System.out.println("Entered second while loop\n");
+                    Schedule available_schedule = available_schedule_iterator.next();
                     int scene_id = available_schedule.getScene_id();
 
                     // Check if we there is an available slot for the event
                     if (available_schedule.getDay() == event.getSpectacle().getDay()[0]) {
+                        System.out.println("DAY IS GOOD\n");
+                        System.out.println("Schedule time: "+available_schedule.getTime().toString()+"\n");
+                        System.out.println("Event time: "+event.getSpectacle().getTime().toString()+"\n");
                         if (available_schedule.getTime().isTimeWithinBoundaries(event.getSpectacle().getTime())) {
+                            System.out.println("Check if we got enough capacity\n");
 
-                            // It's good, we can add the event to our reserved schedules
-                            for (Pair<Integer, ArrayList<Schedule>> reserved_week_schedule: reserved_schedules){
-                                if (reserved_week_schedule.getKey() == week){
-                                    ArrayList<Schedule> new_reserved_week_schedule = reserved_week_schedule.getValue();
-                                    new_reserved_week_schedule.add(available_schedule);
-                                    reserved_schedules.add(new Pair<>(week, new_reserved_week_schedule));
+                            // Check if scene capacity is enough for our event
+                            for (Scene scene : scenes) {
+                                if(scene_id==scene.getId()) {
+                                    if (scene.getCapacity()>=event.getCapacity_needed()) {
+
+                                        // It's good, we can add the event to our reserved schedules
+                                        ListIterator<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> reserved_week_schedule_iterator = reserved_schedules.listIterator();
+                                        while (reserved_week_schedule_iterator.hasNext()) {
+                                            Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_week_schedule = reserved_week_schedule_iterator.next();
+                                            if (reserved_week_schedule.getKey() == week) {
+                                                System.out.println("ADDING TO RESERVED SCHEDULES\n");
+                                                reserved_week_schedule_iterator.remove();
+                                                ArrayList<Pair<Schedule, Event>> new_reserved_week_schedule = reserved_week_schedule.getValue();
+                                                new_reserved_week_schedule.add(new Pair<>(available_schedule, event));
+                                                reserved_schedules.add(new Pair<>(week, new_reserved_week_schedule));
+                                                break;
+                                            }
+                                        }
+
+                                        available_schedule_iterator.remove();
+
+                                        // After reserving the schedule, add the remaining free time to available schedules
+                                        if (!available_schedule.getTime().isStartTimeEqual(event.getSpectacle().getTime())) {
+                                            int[] start_time = available_schedule.getTime().getStart_time();
+                                            int[] end_time = event.getSpectacle().getTime().getStart_time();
+                                            Schedule schedule = new Schedule(scene_id, available_schedule.getDay(), new Time(start_time, end_time));
+                                            available_schedule_iterator.add(schedule);
+                                        }
+                                        if (!available_schedule.getTime().isEndTimeEqual(event.getSpectacle().getTime())) {
+                                            int[] start_time = event.getSpectacle().getTime().getEnd_time();
+                                            int[] end_time = available_schedule.getTime().getEnd_time();
+                                            Schedule schedule = new Schedule(scene_id, available_schedule.getDay(), new Time(start_time, end_time));
+                                            available_schedule_iterator.add(schedule);
+                                        }
+                                        week_iterator.remove();
+                                        week_iterator.add(new Pair<>(week, week_available_schedules));
+                                        break;
+                                    }
                                 }
                             }
-
-                            iterator.remove();
-
-                            // After reserving the schedule, add the remaining free time to available schedules
-                            if (!available_schedule.getTime().isStartTimeEqual(event.getSpectacle().getTime())) {
-                                int[] start_time = available_schedule.getTime().getStart_time();
-                                int[] end_time = event.getSpectacle().getTime().getStart_time();
-                                Schedule schedule = new Schedule(scene_id, available_schedule.getDay(), new Time(start_time, end_time));
-                                week_available_schedules.add(schedule);
-                                available_schedules.add(new Pair<>(week, week_available_schedules));
-                            }
-                            if (!available_schedule.getTime().isEndTimeEqual(event.getSpectacle().getTime())) {
-                                int[] start_time = event.getSpectacle().getTime().getEnd_time();
-                                int[] end_time = available_schedule.getTime().getEnd_time();
-                                Schedule schedule = new Schedule(scene_id, available_schedule.getDay(), new Time(start_time, end_time));
-                                week_available_schedules.add(schedule);
-                                available_schedules.add(new Pair<>(week, week_available_schedules));
-                            }
-                            break;
                         }
                     }
                 }
             }
         }
-
+        System.out.println("APRES:" + reserved_schedules+"\n");
+        System.out.println("AVAILABLE APRES: "+ available_schedules);
     }
 
     public void generateWeeklyProgram(ArrayList<String[]> string_events, int week){

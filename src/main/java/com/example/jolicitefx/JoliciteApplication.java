@@ -15,10 +15,12 @@ public class JoliciteApplication extends Application {
 
     private static Stage stg;
     public static CulturalBuilding cultural_building;
+    private static int queued_week;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         stg = primaryStage;
+        queued_week=0;
         primaryStage.setResizable(true);
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         primaryStage.setTitle("Cultural Programming");
@@ -41,8 +43,16 @@ public class JoliciteApplication extends Application {
         cultural_building.addWeek(week);
     }
 
-    public void programWeek(ArrayList<String[]> events){
-        cultural_building.generateWeeklyProgram(events,1);
+    public void programWeek(ArrayList<String[]> events, int week){
+        cultural_building.generateWeeklyProgram(events,week);
+    }
+
+    public int getQueued_week() {
+        return queued_week;
+    }
+
+    public void setQueued_week(int queued_week) {
+        JoliciteApplication.queued_week = queued_week;
     }
 
     public static void main(String[] args) {

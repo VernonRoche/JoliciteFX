@@ -28,6 +28,8 @@ public class JolicitePreFormController {
     public void goToForm(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.addWeek(Integer.parseInt(schedule_week.getText()));
+        app.setQueued_week(Integer.parseInt(schedule_week.getText()));
+        System.out.println("Queued week is now "+app.getQueued_week());
         app.changeScene("weekly_form.fxml");
     }
 
