@@ -1,14 +1,14 @@
 package com.example.jolicitefx.Domain;
 
-import java.util.ArrayList;
-
 public class Scene {
-    private static int id = 0;
+    private static int id_incrementor = 0;
+    private int id;
     private final int capacity;
 
     public Scene(int capacity) {
         this.capacity = capacity;
-        id++;
+        this.id = id_incrementor;
+        id_incrementor++;
     }
 
     public int getId() {
