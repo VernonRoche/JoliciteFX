@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jolicitefx.JoliciteHomeController">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1400.0">
@@ -72,12 +71,12 @@
               </rowConstraints>
               <TableView prefHeight="487.0" prefWidth="1131.0" stylesheets="@fullpackstyling.css" GridPane.rowIndex="1">
                   <columns>
-                      <TableColumn fx:id="home_schedule" prefWidth="110.0001220703125" text="Scene" />
-                      <TableColumn prefWidth="301.99993896484375" text="Event" />
-                      <TableColumn minWidth="0.0" prefWidth="102.6666259765625" text="Week" />
-                      <TableColumn prefWidth="80.666748046875" text="Day" />
-                      <TableColumn prefWidth="90.6666259765625" text="Time" />
-                  <TableColumn minWidth="0.0" prefWidth="102.6666259765625" text="Capacity" />
+                      <TableColumn fx:id="table_scene" prefWidth="110.0001220703125" text="Scene" />
+                      <TableColumn fx:id="table_event" prefWidth="301.99993896484375" text="Event" />
+                      <TableColumn fx:id="table_week" minWidth="0.0" prefWidth="102.6666259765625" text="Week" />
+                      <TableColumn fx:id="table_day" prefWidth="80.666748046875" text="Day" />
+                      <TableColumn fx:id="table_time" prefWidth="90.6666259765625" text="Time" />
+                  <TableColumn fx:id="table_capacity" minWidth="0.0" prefWidth="102.6666259765625" text="Capacity" />
                   </columns>
                   <columnResizePolicy>
                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
