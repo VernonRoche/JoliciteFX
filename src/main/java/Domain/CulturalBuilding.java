@@ -1,5 +1,7 @@
 package Domain;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
 import java.util.*;
@@ -172,5 +174,29 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
                 ", scenes=" + scenes +
                 ", reserved_scene=" + reserved_scene +
                 '}';
+    }
+
+    public ObservableList<EventTableInformation> getEventTableInformationFromReservedSchedules() {
+        ArrayList<String[]> string_reserved_schedules = new ArrayList<>();
+        for(Pair<Integer,ArrayList<Pair<Schedule,Event>>> reserved_schedule : reserved_schedules){
+            int week = reserved_schedule.getKey();
+            String[] string_reserved_schedule = new String[6];
+            for(Pair<Schedule,Event> schedule :reserved_schedule.getValue()){
+                string_reserved_schedule[0] = String.valueOf(schedule.getKey().getScene_id());
+                string_reserved_schedule[1] = String.valueOf(schedule.getValue().getSpectacle().getName());
+                string_reserved_schedule[2] = String.valueOf(week);
+                string_reserved_schedule[3] = String.valueOf(schedule.getKey().getDay().name());
+                string_reserved_schedule[4] = String.valueOf(schedule.getKey().getTime().toString());
+                string_reserved_schedule[5] = String.valueOf(schedule.getValue().getCapacity_needed());
+            }
+            string_reserved_schedules.add(string_reserved_schedule);
+        }
+
+        ObservableList<EventTableInformation> event_table_information = FXCollections.observableArrayList();
+        for(String[] string_info : string_reserved_schedules){
+            event_table_information.add(new EventTableInformation(string_info[0],string_info[1],string_info[2],string_info[3],string_info[4],
+                    string_info[5]));
+        }
+        return event_table_information;
     }
 }

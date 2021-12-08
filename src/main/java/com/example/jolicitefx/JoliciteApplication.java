@@ -1,8 +1,9 @@
 package com.example.jolicitefx;
 
 import Domain.CulturalBuilding;
-import Domain.TheaterPiece;
+import Domain.EventTableInformation;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,6 +29,7 @@ public class JoliciteApplication extends Application {
         primaryStage.show();
         cultural_building = new CulturalBuilding("Jolicite",
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        System.out.println(cultural_building);
     }
 
     public void changeScene(String fxml) throws IOException {
@@ -55,7 +57,17 @@ public class JoliciteApplication extends Application {
         JoliciteApplication.queued_week = queued_week;
     }
 
+    public ObservableList<EventTableInformation> fetchReservedSchedules() {
+        return cultural_building.getEventTableInformationFromReservedSchedules();
+    }
+
+    public CulturalBuilding getCultural_building() {
+        return cultural_building;
+    }
+
     public static void main(String[] args) {
         launch();
     }
+
+
 }

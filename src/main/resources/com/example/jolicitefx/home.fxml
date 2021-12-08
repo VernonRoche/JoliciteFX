@@ -69,7 +69,7 @@
                   <RowConstraints maxHeight="252.33331298828125" minHeight="10.0" prefHeight="65.33329264322916" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="514.6666666666667" minHeight="10.0" prefHeight="486.66670735677087" vgrow="SOMETIMES" />
               </rowConstraints>
-              <TableView prefHeight="487.0" prefWidth="1131.0" stylesheets="@fullpackstyling.css" GridPane.rowIndex="1">
+              <TableView fx:id="home_table" prefHeight="487.0" prefWidth="1131.0" stylesheets="@fullpackstyling.css" GridPane.rowIndex="1">
                   <columns>
                       <TableColumn fx:id="table_scene" prefWidth="110.0001220703125" text="Scene" />
                       <TableColumn fx:id="table_event" prefWidth="301.99993896484375" text="Event" />
@@ -88,6 +88,11 @@
                           <Font name="Lucida Console" size="14.0" />
                       </font>
                   </Button>
+               <Button fx:id="button_refresh" mnemonicParsing="false" onAction="#refreshTable" prefHeight="39.0" prefWidth="292.0" style="-fx-background-color: #2e6050;" text="Refresh Content" textFill="WHITE">
+                  <font>
+                     <Font name="Lucida Console" size="18.0" />
+                  </font>
+               </Button>
               </HBox>
           </GridPane>
           <Pane layoutX="292.0" layoutY="93.0" prefHeight="147.0" prefWidth="1108.0" style="-fx-background-color: #708080;" />
