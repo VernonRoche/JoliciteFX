@@ -108,15 +108,17 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
                                 if(scene_id==scene.getId()) {
                                     if (scene.getCapacity()>=event.getCapacity_needed()) {
                                         System.out.println("Capacity is good for "+event.getSpectacle().getName()+"\n");
+
                                         // It's good, we can add the event to our reserved schedules
                                         ListIterator<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> reserved_week_schedule_iterator = reserved_schedules.listIterator();
                                         while (reserved_week_schedule_iterator.hasNext()) {
                                             Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_week_schedule = reserved_week_schedule_iterator.next();
+
                                             if (reserved_week_schedule.getKey() == week) {
                                                 reserved_week_schedule_iterator.remove();
                                                 ArrayList<Pair<Schedule, Event>> new_reserved_week_schedule = reserved_week_schedule.getValue();
                                                 new_reserved_week_schedule.add(new Pair<>(available_schedule, event));
-                                                reserved_schedules.add(new Pair<>(week, new_reserved_week_schedule));
+                                                reserved_week_schedule_iterator.add(new Pair<>(week, new_reserved_week_schedule));
                                                 break;
                                             }
                                         }
@@ -178,7 +180,7 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
                 string_reserved_schedule[0] = String.valueOf(schedule.getKey().getScene_id());
                 string_reserved_schedule[1] = String.valueOf(schedule.getValue().getSpectacle().getName());
                 string_reserved_schedule[2] = String.valueOf(week);
-                string_reserved_schedule[3] = String.valueOf(schedule.getKey().getDay().name());
+                string_reserved_schedule[3] = schedule.getKey().getDay().name();
                 string_reserved_schedule[4] = String.valueOf(schedule.getKey().getTime().toString());
                 string_reserved_schedule[5] = String.valueOf(schedule.getValue().getCapacity_needed());
             }

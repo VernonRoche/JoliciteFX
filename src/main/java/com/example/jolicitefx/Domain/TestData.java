@@ -19,7 +19,7 @@ public class TestData {
         String[] test_event_7 = new String[]{"Concert", "Angele", "800", "monday", "monday", "12-15", "14-30"};
         String[] test_event_8 = new String[]{"Concert", "Woodkid", "200", "saturday", "saturday", "14-30", "17-00"};
         String[] test_event_9 = new String[]{"Concert", "Aerosmith", "500", "wednesday", "wednesday", "16-00", "18-30"};
-        String[] test_event_10 = new String[]{"Concert", "Berywam", "300", "sunday", "sunday", "15-00", "18-00"};
+        String[] test_event_10 = new String[]{"Concert", "Berywam", "300", "sunday", "sunday", "13-00", "18-00"};
 
         culturalBuilding.addScene(test_scene_1);
         culturalBuilding.addScene(test_scene_2);
