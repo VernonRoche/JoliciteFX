@@ -28,7 +28,7 @@ public class JolicitePreFormController {
         JoliciteApplication app = new JoliciteApplication();
         app.addWeek(Integer.parseInt(schedule_week.getText()));
         app.setQueued_week(Integer.parseInt(schedule_week.getText()));
-        System.out.println("Queued week is now "+app.getQueued_week());
+        System.out.println("Queued week is now " + app.getQueued_week());
         app.changeScene("weekly_form.fxml");
     }
 
@@ -37,7 +37,7 @@ public class JolicitePreFormController {
         app.changeScene("scene.fxml");
     }
 
-    public void exitApplication(ActionEvent event){
+    public void exitApplication(ActionEvent event) {
         javafx.application.Platform.exit();
     }
 }

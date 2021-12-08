@@ -13,14 +13,18 @@ import java.util.ArrayList;
 
 public class JoliciteApplication extends Application {
 
-    private static Stage stg;
     public static CulturalBuilding cultural_building;
+    private static Stage stg;
     private static int queued_week;
 
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         stg = primaryStage;
-        queued_week=0;
+        queued_week = 0;
         primaryStage.setResizable(true);
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         primaryStage.setTitle("Cultural Programming");
@@ -37,16 +41,16 @@ public class JoliciteApplication extends Application {
         stg.getScene().setRoot(pane);
     }
 
-    public void addCulturalBuildingScene(String[] scene_information){
+    public void addCulturalBuildingScene(String[] scene_information) {
         cultural_building.addScene(scene_information);
     }
 
-    public void addWeek(int week){
+    public void addWeek(int week) {
         cultural_building.addWeek(week);
     }
 
-    public void programWeek(ArrayList<String[]> events, int week){
-        cultural_building.generateWeeklyProgram(events,week);
+    public void programWeek(ArrayList<String[]> events, int week) {
+        cultural_building.generateWeeklyProgram(events, week);
     }
 
     public int getQueued_week() {
@@ -63,10 +67,6 @@ public class JoliciteApplication extends Application {
 
     public CulturalBuilding getCultural_building() {
         return cultural_building;
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 
 

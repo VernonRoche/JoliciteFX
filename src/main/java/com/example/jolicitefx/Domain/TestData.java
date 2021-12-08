@@ -1,12 +1,10 @@
 package com.example.jolicitefx.Domain;
 
-import com.example.jolicitefx.Domain.*;
-
 import java.util.ArrayList;
 
 public class TestData {
 
-    public static void loadTestData(CulturalBuilding culturalBuilding){
+    public static void loadTestData(CulturalBuilding culturalBuilding) {
         String[] test_scene_1 = new String[]{"1000", "12-00", "19-00", "5"};
         String[] test_scene_2 = new String[]{"300", "14-00", "18-00", "2"};
 

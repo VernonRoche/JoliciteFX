@@ -54,11 +54,11 @@ public class JoliciteFormController {
         app.changeScene("scene.fxml");
     }
 
-    public void exitApplication(ActionEvent event){
+    public void exitApplication(ActionEvent event) {
         javafx.application.Platform.exit();
     }
 
-    public void nextEvent(ActionEvent event){
+    public void nextEvent(ActionEvent event) {
         String[] event_to_program = new String[7];
         event_to_program[0] = spectacle_type.getValue();
         event_to_program[1] = spectacle_name.getText();
@@ -78,7 +78,7 @@ public class JoliciteFormController {
 
     public void submitProgram(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
-        System.out.println("Submitting Program with week "+app.getQueued_week());
+        System.out.println("Submitting Program with week " + app.getQueued_week());
         app.programWeek(events_to_program, app.getQueued_week());
         app.setQueued_week(0);
         goToHome(event);

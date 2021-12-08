@@ -5,7 +5,9 @@ import com.example.jolicitefx.Domain.CulturalBuilding;
 // NOT IMPLEMENTED
 public class Repository implements com.example.jolicitefx.Domain.Repository {
 
-    public Repository(){}
+    public Repository() {
+    }
+
     @Override
     public void saveCulturalBuilding(CulturalBuilding culturalBuilding) {
 

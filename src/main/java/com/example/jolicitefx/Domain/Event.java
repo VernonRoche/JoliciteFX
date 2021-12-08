@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Event {
     private final Spectacle spectacle;
-    private int capacity_needed;
+    private final int capacity_needed;
 
-    public Event(Spectacle spectacle, int capacity_needed){
-        this.capacity_needed=capacity_needed;
-        this.spectacle=spectacle;
+    public Event(Spectacle spectacle, int capacity_needed) {
+        this.capacity_needed = capacity_needed;
+        this.spectacle = spectacle;
     }
 
-    public Event(String[] event_string){
-        if (event_string.length!=7){
+    public Event(String[] event_string) {
+        if (event_string.length != 7) {
             throw new IllegalArgumentException("Wrong event string format provided.");
         }
         String name = event_string[1];
@@ -26,31 +26,26 @@ public class Event {
         Day end_day = Day.valueOf(end_day_string);
         int[] start_time = new int[2];
         int[] end_time = new int[2];
-        for(int i=0;i< split_time_string.length;i++){
+        for (int i = 0; i < split_time_string.length; i++) {
             start_time[i] = Integer.parseInt(split_time_string[i]);
             end_time[i] = Integer.parseInt(split_end_time_string[i]);
         }
         Spectacle spectacle;
-        if (Objects.equals(event_string[0], "Concert")){
-            spectacle = new Concert(start_day,name,start_time, end_time);
+        if (Objects.equals(event_string[0], "Concert")) {
+            spectacle = new Concert(start_day, name, start_time, end_time);
+        } else {
+            spectacle = new TheaterPiece(new Day[]{start_day, end_day}, name, start_time, end_time);
         }
-        else{
-            spectacle = new TheaterPiece(new Day[]{start_day, end_day},name,start_time, end_time);
-        }
-        this.spectacle=spectacle;
-        this.capacity_needed=Integer.parseInt(event_string[2]);
+        this.spectacle = spectacle;
+        this.capacity_needed = Integer.parseInt(event_string[2]);
     }
 
     public Spectacle getSpectacle() {
         return spectacle;
     }
 
-    public int getCapacity_needed(){
+    public int getCapacity_needed() {
         return capacity_needed;
-    }
-
-    public void setCapacity_needed(int capacity_needed) {
-        this.capacity_needed = capacity_needed;
     }
 
     @Override

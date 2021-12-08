@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 
-public class JoliciteHomeController{
+public class JoliciteHomeController {
     @FXML
     private Button button_pre_form_small;
     @FXML
@@ -46,7 +46,7 @@ public class JoliciteHomeController{
         app.changeScene("scene.fxml");
     }
 
-    public void exitApplication(ActionEvent event){
+    public void exitApplication(ActionEvent event) {
         javafx.application.Platform.exit();
     }
 

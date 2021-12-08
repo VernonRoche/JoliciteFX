@@ -46,7 +46,7 @@ public class JoliciteSceneController {
         app.changeScene("home.fxml");
     }
 
-    public void exitApplication(ActionEvent event){
+    public void exitApplication(ActionEvent event) {
         javafx.application.Platform.exit();
     }
 }
