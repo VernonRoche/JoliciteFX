@@ -2,6 +2,7 @@ package com.example.jolicitefx.Repository;
 
 import com.example.jolicitefx.Domain.CulturalBuilding;
 
+// NOT IMPLEMENTED
 public class Repository implements com.example.jolicitefx.Domain.Repository {
 
     public Repository(){}
