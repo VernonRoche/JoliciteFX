@@ -2,7 +2,7 @@ package Domain;
 
 import java.util.Arrays;
 
-public class TheaterPiece extends Spectacle{
+public class TheaterPiece implements Spectacle {
     private final Day[] dates;
     private final Name name;
     private final Time time;

@@ -1,6 +1,6 @@
 package Domain;
 
-public class Concert extends Spectacle{
+public class Concert implements Spectacle {
     private final Day day;
     private final Name artist_name;
     private final Time time;

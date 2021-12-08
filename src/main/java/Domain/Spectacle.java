@@ -1,12 +1,12 @@
 package Domain;
 
-public abstract class Spectacle {
+public interface Spectacle {
 
-    public abstract Day[] getDay();
+    Day[] getDay();
 
-    public abstract String getName();
+    String getName();
 
-    public abstract Time getTime();
+    Time getTime();
 
-    public abstract String getType();
+    String getType();
 }
