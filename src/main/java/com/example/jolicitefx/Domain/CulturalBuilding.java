@@ -81,46 +81,38 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
 
     public void programEvent(Event event, int week){
         // Iterate through all weeks
-        System.out.println("Available Schedules: " + available_schedules + "\n");
-        System.out.println("AVANT:" + reserved_schedules);
-        System.out.println("Asked week "+week+"\n");
+        System.out.println("Event's week"+ week +"\n");
         ListIterator<Pair<Integer, ArrayList<Schedule>>> week_iterator = available_schedules.listIterator();
         while (week_iterator.hasNext()){
-            System.out.println("Entered first while loop\n");
             Pair<Integer, ArrayList<Schedule>> week_schedules =week_iterator.next();
             int week_key = week_schedules.getKey();
 
             // Go to week asked
             if (week_key==week) {
-                System.out.println("Found week to insert\n");
+                System.out.println("Week is good\n");
                 ArrayList<Schedule> week_available_schedules = week_schedules.getValue();
                 ListIterator<Schedule> available_schedule_iterator = week_available_schedules.listIterator();
 
                 // Iterate through the week's available schedules
                 while (available_schedule_iterator.hasNext()) {
-                    System.out.println("Entered second while loop\n");
                     Schedule available_schedule = available_schedule_iterator.next();
                     int scene_id = available_schedule.getScene_id();
 
                     // Check if we there is an available slot for the event
                     if (available_schedule.getDay() == event.getSpectacle().getDay()[0]) {
-                        System.out.println("DAY IS GOOD\n");
-                        System.out.println("Schedule time: "+available_schedule.getTime().toString()+"\n");
-                        System.out.println("Event time: "+event.getSpectacle().getTime().toString()+"\n");
+                        System.out.println("Day is good for "+event.getSpectacle().getName()+"\n");
                         if (available_schedule.getTime().isTimeWithinBoundaries(event.getSpectacle().getTime())) {
-                            System.out.println("Check if we got enough capacity\n");
-
+                            System.out.println("Time is good for "+event.getSpectacle().getName()+"\n");
                             // Check if scene capacity is enough for our event
                             for (Scene scene : scenes) {
                                 if(scene_id==scene.getId()) {
                                     if (scene.getCapacity()>=event.getCapacity_needed()) {
-
+                                        System.out.println("Capacity is good for "+event.getSpectacle().getName()+"\n");
                                         // It's good, we can add the event to our reserved schedules
                                         ListIterator<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> reserved_week_schedule_iterator = reserved_schedules.listIterator();
                                         while (reserved_week_schedule_iterator.hasNext()) {
                                             Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_week_schedule = reserved_week_schedule_iterator.next();
                                             if (reserved_week_schedule.getKey() == week) {
-                                                System.out.println("ADDING TO RESERVED SCHEDULES\n");
                                                 reserved_week_schedule_iterator.remove();
                                                 ArrayList<Pair<Schedule, Event>> new_reserved_week_schedule = reserved_week_schedule.getValue();
                                                 new_reserved_week_schedule.add(new Pair<>(available_schedule, event));
@@ -199,5 +191,9 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
                     string_info[5]));
         }
         return event_table_information;
+    }
+
+    public void loadInitialTestData(){
+        TestData.loadTestData(this);
     }
 }

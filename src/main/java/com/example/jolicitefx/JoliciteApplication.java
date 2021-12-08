@@ -29,6 +29,7 @@ public class JoliciteApplication extends Application {
         cultural_building = new CulturalBuilding("Jolicite",
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         System.out.println(cultural_building);
+        cultural_building.loadInitialTestData();
     }
 
     public void changeScene(String fxml) throws IOException {

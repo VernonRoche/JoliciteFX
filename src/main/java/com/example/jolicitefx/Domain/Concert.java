@@ -44,7 +44,7 @@ public class Concert implements Spectacle {
     public String toString() {
         return "Concert{" +
                 "day=" + day +
-                ", artist_name=" + artist_name +
+                ", artist_name=" + getName() +
                 ", time=" + time +
                 '}';
     }

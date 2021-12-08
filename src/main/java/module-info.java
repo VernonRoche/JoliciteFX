@@ -9,4 +9,6 @@ module com.example.jolicitefx {
 
     opens com.example.jolicitefx to javafx.fxml;
     exports com.example.jolicitefx;
+    exports com.example.jolicitefx.Domain;
+    opens com.example.jolicitefx.Domain to javafx.fxml;
 }

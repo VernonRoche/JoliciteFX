@@ -47,7 +47,7 @@ public class TheaterPiece implements Spectacle {
     public String toString() {
         return "TheaterPiece{" +
                 "dates=" + Arrays.toString(dates) +
-                ", name=" + name +
+                ", name=" + getName() +
                 ", time=" + time +
                 '}';
     }
