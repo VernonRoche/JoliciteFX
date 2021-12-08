@@ -2,7 +2,7 @@ package com.example.jolicitefx.Domain;
 
 public class Scene {
     private static int id_incrementor = 0;
-    private int id;
+    private final int id;
     private final int capacity;
 
     public Scene(int capacity) {
