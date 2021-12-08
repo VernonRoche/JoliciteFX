@@ -1,7 +1,6 @@
 package com.example.jolicitefx;
 
-import Domain.CulturalBuilding;
-import Domain.EventTableInformation;
+import com.example.jolicitefx.Domain.CulturalBuilding;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;

@@ -1,6 +1,5 @@
-package Domain;
+package com.example.jolicitefx.Domain;
 
-import java.util.Locale;
 import java.util.Objects;
 
 public class Event {

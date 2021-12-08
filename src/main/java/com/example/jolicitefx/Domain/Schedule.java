@@ -1,4 +1,4 @@
-package Domain;
+package com.example.jolicitefx.Domain;
 
 public class Schedule {
     private final int scene_id;

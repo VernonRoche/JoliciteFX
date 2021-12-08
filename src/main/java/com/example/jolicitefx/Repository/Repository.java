@@ -1,8 +1,8 @@
-package Repository;
+package com.example.jolicitefx.Repository;
 
-import Domain.CulturalBuilding;
+import com.example.jolicitefx.Domain.CulturalBuilding;
 
-public class Repository implements Domain.Repository {
+public class Repository implements com.example.jolicitefx.Domain.Repository {
 
     public Repository(){}
     @Override

@@ -1,11 +1,8 @@
 package com.example.jolicitefx;
 
-import Domain.*;
-import javafx.util.Pair;
+import com.example.jolicitefx.Domain.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class JoliciteDomainTest {
 

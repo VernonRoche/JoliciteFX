@@ -1,5 +1,6 @@
-package Domain;
+package com.example.jolicitefx.Domain;
 
+import com.example.jolicitefx.EventTableInformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;

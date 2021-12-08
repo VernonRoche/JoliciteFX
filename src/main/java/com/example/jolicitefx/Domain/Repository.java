@@ -1,4 +1,4 @@
-package Domain;
+package com.example.jolicitefx.Domain;
 
 public interface Repository {
     void saveCulturalBuilding(CulturalBuilding culturalBuilding);

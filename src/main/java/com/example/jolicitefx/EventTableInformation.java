@@ -1,4 +1,4 @@
-package Domain;
+package com.example.jolicitefx;
 
 import javafx.beans.property.SimpleStringProperty;
 

@@ -1,4 +1,4 @@
-package Domain;
+package com.example.jolicitefx.Domain;
 
 public class Concert implements Spectacle {
     private final Day day;
