@@ -7,24 +7,11 @@ public class TheaterPiece implements Spectacle {
     private final Name name;
     private final Time time;
 
-    public TheaterPiece(Day[] dates, String name, int[] start_time, int[] end_time){
-        this.dates= dates;
-        this.name=new Name(name);
-        this.time =new Time(start_time, end_time);
+    public TheaterPiece(Day[] dates, String name, int[] start_time, int[] end_time) {
+        this.dates = dates;
+        this.name = new Name(name);
+        this.time = new Time(start_time, end_time);
     }
-
-    private class Name{
-        private final String name;
-
-        Name(String name){
-            this.name=name;
-        }
-
-        String get() {
-            return name;
-        }
-    }
-
 
     public Day[] getDay() {
         return dates;
@@ -34,12 +21,11 @@ public class TheaterPiece implements Spectacle {
         return name.get();
     }
 
-    public Time getTime(){
+    public Time getTime() {
         return this.time;
     }
 
-
-    public String getType(){
+    public String getType() {
         return "Theater Piece";
     }
 
@@ -50,5 +36,17 @@ public class TheaterPiece implements Spectacle {
                 ", name=" + getName() +
                 ", time=" + time +
                 '}';
+    }
+
+    private class Name {
+        private final String name;
+
+        Name(String name) {
+            this.name = name;
+        }
+
+        String get() {
+            return name;
+        }
     }
 }

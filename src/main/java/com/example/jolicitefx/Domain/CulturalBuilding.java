@@ -5,17 +5,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class CulturalBuilding { //ArrayList<Pair<Integer,>>
     private final String name;
-    private ArrayList<Pair<Integer,ArrayList<Schedule>>> available_schedules = new ArrayList<>();
-    private ArrayList<Pair<Integer,ArrayList<Pair<Schedule,Event>>>> reserved_schedules = new ArrayList<>();
+    private ArrayList<Pair<Integer, ArrayList<Schedule>>> available_schedules = new ArrayList<>();
+    private ArrayList<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> reserved_schedules = new ArrayList<>();
     private ArrayList<Scene> scenes = new ArrayList<>();
     private Scene reserved_scene;
 
-    public CulturalBuilding(String name, ArrayList<Scene> scenes, ArrayList<Pair<Integer,ArrayList<Schedule>>> available_schedules, ArrayList<Pair<Integer,ArrayList<Pair<Schedule, Event>>>> reserved_schedules){
-        this.name=name;
+    public CulturalBuilding(String name, ArrayList<Scene> scenes, ArrayList<Pair<Integer, ArrayList<Schedule>>> available_schedules, ArrayList<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> reserved_schedules) {
+        this.name = name;
         this.scenes.addAll(scenes);
         this.reserved_schedules.addAll(reserved_schedules);
         this.available_schedules.addAll(available_schedules);
@@ -25,14 +26,8 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         return name;
     }
 
-    public ArrayList<Scene> getScenes() {
-        return scenes;
-    }
-
-    public ArrayList<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> getReserved_schedules() { return reserved_schedules; }
-
-    public void addScene(String[] scene){
-        if (scene.length!=4){
+    public void addScene(String[] scene) {
+        if (scene.length != 4) {
             throw new IllegalArgumentException("Wrong scene string input.");
         }
         int capacity = Integer.parseInt(scene[0]);
@@ -42,7 +37,7 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
 
         int[] start_time = new int[2];
         int[] end_time = new int[2];
-        for(int i=0;i< start_time_string.length;i++){
+        for (int i = 0; i < start_time_string.length; i++) {
             start_time[i] = Integer.parseInt(start_time_string[i]);
             end_time[i] = Integer.parseInt(end_time_string[i]);
         }
@@ -52,13 +47,13 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         int new_scene_id = new_scene.getId();
 
         // Iterate through all weeks starting from start_week up to final week of year (53rd week)
-        for(int week=start_week; week<54 ; week++){
+        for (int week = start_week; week < 54; week++) {
 
             // For each week, add a schedule for each day with start_time and end_time
             Day[] possible_days = Day.values();
             ArrayList<Schedule> available_week_schedules = new ArrayList<>();
-            for(int day=0; day<possible_days.length ; day++){
-                Schedule new_schedule = new Schedule(new_scene_id, possible_days[day], new Time(start_time,end_time));
+            for (Day possible_day : possible_days) {
+                Schedule new_schedule = new Schedule(new_scene_id, possible_day, new Time(start_time, end_time));
                 available_week_schedules.add(new_schedule);
             }
 
@@ -66,31 +61,31 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         }
     }
 
-    public void removeScene(int id){
+    public void removeScene(int id) {
         scenes.removeIf(x -> x.getId() == id);
     }
 
-    public void setUpReservedScene(Scene scene){
-        this.reserved_scene=scene;
+    public void setUpReservedScene(Scene scene) {
+        this.reserved_scene = scene;
     }
 
-    public void addWeek(int week_number){
-        if (week_number<1 || week_number>53){
+    public void addWeek(int week_number) {
+        if (week_number < 1 || week_number > 53) {
             throw new IllegalArgumentException("Wrong week number input");
         }
         reserved_schedules.add(new Pair<>(week_number, new ArrayList<>()));
     }
 
-    public void programEvent(Event event, int week){
+    public void programEvent(Event event, int week) {
         // Iterate through all weeks
-        System.out.println("Event's week"+ week +"\n");
+        System.out.println("Event's week" + week + "\n");
         ListIterator<Pair<Integer, ArrayList<Schedule>>> week_iterator = available_schedules.listIterator();
-        while (week_iterator.hasNext()){
-            Pair<Integer, ArrayList<Schedule>> week_schedules =week_iterator.next();
+        while (week_iterator.hasNext()) {
+            Pair<Integer, ArrayList<Schedule>> week_schedules = week_iterator.next();
             int week_key = week_schedules.getKey();
 
             // Go to week asked
-            if (week_key==week) {
+            if (week_key == week) {
                 System.out.println("Week is good\n");
                 ArrayList<Schedule> week_available_schedules = week_schedules.getValue();
                 ListIterator<Schedule> available_schedule_iterator = week_available_schedules.listIterator();
@@ -102,23 +97,25 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
 
                     // Check if we there is an available slot for the event
                     if (available_schedule.getDay() == event.getSpectacle().getDay()[0]) {
-                        System.out.println("Day is good for "+event.getSpectacle().getName()+"\n");
+                        System.out.println("Day is good for " + event.getSpectacle().getName() + "\n");
                         if (available_schedule.getTime().isTimeWithinBoundaries(event.getSpectacle().getTime())) {
-                            System.out.println("Time is good for "+event.getSpectacle().getName()+"\n");
+                            System.out.println("Time is good for " + event.getSpectacle().getName() + "\n");
                             // Check if scene capacity is enough for our event
                             for (Scene scene : scenes) {
-                                if(scene_id==scene.getId()) {
-                                    if (scene.getCapacity()>=event.getCapacity_needed()) {
-                                        System.out.println("Capacity is good for "+event.getSpectacle().getName()+"\n");
+                                if (scene_id == scene.getId()) {
+                                    if (scene.getCapacity() >= event.getCapacity_needed()) {
+                                        System.out.println("Capacity is good for " + event.getSpectacle().getName() + "\n");
+
                                         // It's good, we can add the event to our reserved schedules
                                         ListIterator<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> reserved_week_schedule_iterator = reserved_schedules.listIterator();
                                         while (reserved_week_schedule_iterator.hasNext()) {
                                             Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_week_schedule = reserved_week_schedule_iterator.next();
+
                                             if (reserved_week_schedule.getKey() == week) {
                                                 reserved_week_schedule_iterator.remove();
                                                 ArrayList<Pair<Schedule, Event>> new_reserved_week_schedule = reserved_week_schedule.getValue();
                                                 new_reserved_week_schedule.add(new Pair<>(available_schedule, event));
-                                                reserved_schedules.add(new Pair<>(week, new_reserved_week_schedule));
+                                                reserved_week_schedule_iterator.add(new Pair<>(week, new_reserved_week_schedule));
                                                 break;
                                             }
                                         }
@@ -149,12 +146,12 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
                 }
             }
         }
-        System.out.println("APRES:" + reserved_schedules+"\n");
-        System.out.println("AVAILABLE APRES: "+ available_schedules);
+        System.out.println("APRES:" + reserved_schedules + "\n");
+        System.out.println("AVAILABLE APRES: " + available_schedules);
     }
 
-    public void generateWeeklyProgram(ArrayList<String[]> string_events, int week){
-        for (String[] string_event : string_events){
+    public void generateWeeklyProgram(ArrayList<String[]> string_events, int week) {
+        for (String[] string_event : string_events) {
             Event new_event = new Event(string_event);
             programEvent(new_event, week);
         }
@@ -173,14 +170,14 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
 
     public ObservableList<EventTableInformation> getEventTableInformationFromReservedSchedules() {
         ArrayList<String[]> string_reserved_schedules = new ArrayList<>();
-        for(Pair<Integer,ArrayList<Pair<Schedule,Event>>> reserved_schedule : reserved_schedules){
+        for (Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_schedule : reserved_schedules) {
             int week = reserved_schedule.getKey();
             String[] string_reserved_schedule = new String[6];
-            for(Pair<Schedule,Event> schedule :reserved_schedule.getValue()){
+            for (Pair<Schedule, Event> schedule : reserved_schedule.getValue()) {
                 string_reserved_schedule[0] = String.valueOf(schedule.getKey().getScene_id());
                 string_reserved_schedule[1] = String.valueOf(schedule.getValue().getSpectacle().getName());
                 string_reserved_schedule[2] = String.valueOf(week);
-                string_reserved_schedule[3] = String.valueOf(schedule.getKey().getDay().name());
+                string_reserved_schedule[3] = schedule.getKey().getDay().name();
                 string_reserved_schedule[4] = String.valueOf(schedule.getKey().getTime().toString());
                 string_reserved_schedule[5] = String.valueOf(schedule.getValue().getCapacity_needed());
             }
@@ -188,14 +185,14 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         }
 
         ObservableList<EventTableInformation> event_table_information = FXCollections.observableArrayList();
-        for(String[] string_info : string_reserved_schedules){
-            event_table_information.add(new EventTableInformation(string_info[0],string_info[1],string_info[2],string_info[3],string_info[4],
+        for (String[] string_info : string_reserved_schedules) {
+            event_table_information.add(new EventTableInformation(string_info[0], string_info[1], string_info[2], string_info[3], string_info[4],
                     string_info[5]));
         }
         return event_table_information;
     }
 
-    public void loadInitialTestData(){
+    public void loadInitialTestData() {
         TestData.loadTestData(this);
     }
 }

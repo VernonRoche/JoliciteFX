@@ -23,71 +23,71 @@ public class EventTableInformation {
         return scene.get();
     }
 
-    public SimpleStringProperty sceneProperty() {
-        return scene;
-    }
-
     public void setScene(String scene) {
         this.scene.set(scene);
+    }
+
+    public SimpleStringProperty sceneProperty() {
+        return scene;
     }
 
     public String getEvent_name() {
         return event_name.get();
     }
 
-    public SimpleStringProperty event_nameProperty() {
-        return event_name;
-    }
-
     public void setEvent_name(String event_name) {
         this.event_name.set(event_name);
+    }
+
+    public SimpleStringProperty event_nameProperty() {
+        return event_name;
     }
 
     public String getWeek() {
         return week.get();
     }
 
-    public SimpleStringProperty weekProperty() {
-        return week;
-    }
-
     public void setWeek(String week) {
         this.week.set(week);
+    }
+
+    public SimpleStringProperty weekProperty() {
+        return week;
     }
 
     public String getDay() {
         return day.get();
     }
 
-    public SimpleStringProperty dayProperty() {
-        return day;
-    }
-
     public void setDay(String day) {
         this.day.set(day);
+    }
+
+    public SimpleStringProperty dayProperty() {
+        return day;
     }
 
     public String getTime() {
         return time.get();
     }
 
-    public SimpleStringProperty timeProperty() {
-        return time;
-    }
-
     public void setTime(String time) {
         this.time.set(time);
+    }
+
+    public SimpleStringProperty timeProperty() {
+        return time;
     }
 
     public String getCapacity() {
         return capacity.get();
     }
 
-    public SimpleStringProperty capacityProperty() {
-        return capacity;
-    }
-
     public void setCapacity(String capacity) {
         this.capacity.set(capacity);
+    }
+
+    public SimpleStringProperty capacityProperty() {
+        return capacity;
     }
 }
