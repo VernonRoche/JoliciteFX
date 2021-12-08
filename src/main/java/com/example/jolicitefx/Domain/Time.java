@@ -62,9 +62,6 @@ public class Time {
 
     @Override
     public String toString() {
-        return "Time{" +
-                "start_time=" + Arrays.toString(start_time) +
-                ", end_time=" + Arrays.toString(end_time) +
-                '}';
+        return Arrays.toString(start_time) + "/" + Arrays.toString(end_time);
     }
 }
