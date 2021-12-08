@@ -1,6 +1,7 @@
 package com.example.jolicitefx.Domain;
 
 import com.example.jolicitefx.Domain.*;
+import com.example.jolicitefx.Repository.Repository;
 
 import java.util.ArrayList;
 
@@ -47,5 +48,8 @@ public class TestData {
         culturalBuilding.generateWeeklyProgram(first_test_week, 2);
         culturalBuilding.generateWeeklyProgram(second_test_week, 5);
         culturalBuilding.generateWeeklyProgram(third_test_week, 6);
+
+        Repository repository = new Repository();
+        repository.saveInFile(culturalBuilding);
     }
 }

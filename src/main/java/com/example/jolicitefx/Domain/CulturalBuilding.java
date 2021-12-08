@@ -29,6 +29,8 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         return scenes;
     }
 
+    public ArrayList<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> getReserved_schedules() { return reserved_schedules; }
+
     public void addScene(String[] scene){
         if (scene.length!=4){
             throw new IllegalArgumentException("Wrong scene string input.");
