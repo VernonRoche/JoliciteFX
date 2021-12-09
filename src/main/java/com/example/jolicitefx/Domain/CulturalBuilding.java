@@ -169,28 +169,21 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
     }
 
     public ObservableList<EventTableInformation> getEventTableInformationFromReservedSchedules() {
-        ArrayList<String[]> string_reserved_schedules = new ArrayList<>();
+        ObservableList<EventTableInformation> event_table_information = FXCollections.observableArrayList();
         for (Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_schedule : reserved_schedules) {
             int week = reserved_schedule.getKey();
             for (Pair<Schedule, Event> schedule : reserved_schedule.getValue()) {
                 String[] string_reserved_schedule = new String[6];
                 System.out.println("ARTIST NAMES: "+schedule.getValue().getSpectacle().getName());
-                string_reserved_schedule[0] = String.valueOf(schedule.getKey().getScene_id());
-                string_reserved_schedule[1] = String.valueOf(schedule.getValue().getSpectacle().getName());
-                string_reserved_schedule[2] = String.valueOf(week);
-                string_reserved_schedule[3] = schedule.getKey().getDay().name();
-                string_reserved_schedule[4] = String.valueOf(schedule.getKey().getTime().toString());
-                string_reserved_schedule[5] = String.valueOf(schedule.getValue().getCapacity_needed());
-                string_reserved_schedules.add(string_reserved_schedule);
+                String scene_id = String.valueOf(schedule.getKey().getScene_id());
+                String name = String.valueOf(schedule.getValue().getSpectacle().getName());
+                String string_week = String.valueOf(week);
+                String day = schedule.getKey().getDay().name();
+                String time = String.valueOf(schedule.getKey().getTime().toString());
+                String capacity = String.valueOf(schedule.getValue().getCapacity_needed());
+                event_table_information.add(new EventTableInformation(scene_id,name,string_week,day,time,capacity));
             }
 
-        }
-
-        ObservableList<EventTableInformation> event_table_information = FXCollections.observableArrayList();
-        for (String[] string_info : string_reserved_schedules) {
-            System.out.println(string_info[1]);
-            event_table_information.add(new EventTableInformation(string_info[0], string_info[1], string_info[2], string_info[3], string_info[4],
-                    string_info[5]));
         }
         return event_table_information;
     }

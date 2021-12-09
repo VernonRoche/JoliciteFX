@@ -20,10 +20,10 @@ public class Repository implements com.example.jolicitefx.Domain.Repository {
 
     public static Set<CulturalBuilding> memory = new HashSet<>();
 
-    @Override
-    public void saveCulturalBuilding(CulturalBuilding culturalBuilding) {
+    @Override public void saveCulturalBuilding(CulturalBuilding culturalBuilding) {
         memory.add(culturalBuilding);
     }
+
 
     @Override
     public CulturalBuilding loadCulturalBuilding(String name) {

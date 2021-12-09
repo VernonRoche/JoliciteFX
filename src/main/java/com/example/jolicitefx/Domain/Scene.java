@@ -7,8 +7,7 @@ public class Scene {
 
     public Scene(int capacity) {
         this.capacity = capacity;
-        this.id = id_incrementor;
-        id_incrementor++;
+        this.id = id_incrementor++;
     }
 
     public int getId() {
