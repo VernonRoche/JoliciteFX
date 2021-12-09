@@ -35,7 +35,7 @@ public class JoliciteApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         stg = primaryStage;
         queued_week = 0;
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
         primaryStage.setTitle("Cultural Programming");
         primaryStage.setScene(new Scene(root, 1400, 820));
