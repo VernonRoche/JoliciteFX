@@ -2,6 +2,11 @@ package com.example.jolicitefx.Domain;
 
 import java.util.Objects;
 
+/**
+ * A class which for a given spectacle (concert or theater piece), holds a needed capacity.
+ *
+ * Can be either instantiated with the objects we need or with an array of String.
+ */
 public class Event {
     private final Spectacle spectacle;
     private final int capacity_needed;
@@ -40,10 +45,18 @@ public class Event {
         this.capacity_needed = Integer.parseInt(event_string[2]);
     }
 
+    /**
+     *
+     * @return The spectacle and it's data
+     */
     public Spectacle getSpectacle() {
         return spectacle;
     }
 
+    /**
+     *
+     * @return An integer representing the capacity needed for the spectacle
+     */
     public int getCapacity_needed() {
         return capacity_needed;
     }

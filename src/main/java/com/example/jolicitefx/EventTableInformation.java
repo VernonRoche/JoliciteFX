@@ -2,6 +2,9 @@ package com.example.jolicitefx;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Class used by the application layer to visualize data
+ */
 public class EventTableInformation {
     private SimpleStringProperty scene;
     private SimpleStringProperty event_name;

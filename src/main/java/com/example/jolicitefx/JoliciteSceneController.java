@@ -7,6 +7,9 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+/**
+ * Controller for the scene creator.
+ */
 public class JoliciteSceneController {
     @FXML
     private Button button_home;
@@ -25,16 +28,34 @@ public class JoliciteSceneController {
     @FXML
     private TextField scene_opening_week;
 
+    /**
+     * Switches windows to home page
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToHome(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.changeScene("home.fxml");
     }
 
+    /**
+     * Switches windows to pre-form
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToForm(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.changeScene("weekly_pre_form.fxml");
     }
 
+    /**
+     * Fetches information passed by the user and sends it to the Domain to instantiate data.
+     *
+     * @param event
+     * @throws IOException
+     */
     public void addScene(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         String[] scene_information = new String[4];
@@ -46,6 +67,11 @@ public class JoliciteSceneController {
         app.changeScene("home.fxml");
     }
 
+    /**
+     * Exit application
+     *
+     * @param event
+     */
     public void exitApplication(ActionEvent event) {
         javafx.application.Platform.exit();
     }

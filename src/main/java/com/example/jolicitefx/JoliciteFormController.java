@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Controller which holds information about our weekly program form.
+ */
 public class JoliciteFormController {
     @FXML
     private Button button_submit;
@@ -39,25 +42,53 @@ public class JoliciteFormController {
 
     private ArrayList<String[]> events_to_program = new ArrayList<>();
 
+    /**
+     * Switches windows to home page
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToHome(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.changeScene("home.fxml");
     }
 
+    /**
+     * Switches windows to pre-form
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToForm(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.changeScene("weekly_pre_form.fxml");
     }
 
+    /**
+     * Switches windows to scene creator
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToScene(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         app.changeScene("scene.fxml");
     }
 
+    /**
+     * Exits the application
+     *
+     * @param event
+     */
     public void exitApplication(ActionEvent event) {
         javafx.application.Platform.exit();
     }
 
+    /**
+     * Adds an event written in the form into a list, which can be later passed on when submitting the weekly program.
+     *
+     * @param event
+     */
     public void nextEvent(ActionEvent event) {
         String[] event_to_program = new String[7];
         event_to_program[0] = spectacle_type.getValue();
@@ -76,6 +107,12 @@ public class JoliciteFormController {
         spectacle_end_time.setText("");
     }
 
+    /**
+     * Submits all events written in the form, using the nextEvent method and programs them. Sends back to homepage.
+     *
+     * @param event
+     * @throws IOException
+     */
     public void submitProgram(ActionEvent event) throws IOException {
         JoliciteApplication app = new JoliciteApplication();
         System.out.println("Submitting Program with week " + app.getQueued_week());

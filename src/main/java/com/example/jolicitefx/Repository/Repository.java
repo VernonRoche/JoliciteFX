@@ -16,15 +16,30 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Class implementing a repository for writing information on the memory and/or a file.
+ */
 public class Repository implements com.example.jolicitefx.Domain.Repository {
 
     public static Set<CulturalBuilding> memory = new HashSet<>();
 
+    /**
+     * Saves our aggregate's information in memory
+     *
+     * @param culturalBuilding The information to save
+     */
     @Override public void saveCulturalBuilding(CulturalBuilding culturalBuilding) {
         memory.add(culturalBuilding);
     }
 
 
+    /**
+     * Loads from memory information of an aggregate
+     *
+     * @param name The name of the organization to load
+     * @return A CulturalBuilding aggregate
+     */
     @Override
     public CulturalBuilding loadCulturalBuilding(String name) {
         for(CulturalBuilding culturalBuilding : memory){
@@ -35,6 +50,11 @@ public class Repository implements com.example.jolicitefx.Domain.Repository {
         return null;
     }
 
+    /**
+     * Similar to saveCulturalBuilding, we don't save in memory, but in a text file.
+     *
+     * @param culturalBuilding The information to save
+     */
     public void saveInFile(CulturalBuilding culturalBuilding){
         try {
 

@@ -8,6 +8,20 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+/**
+ * Aggregate and main calculation class for our cultural organization.
+ * It aggregates schedules, as well as scenes.
+ * @attribute name  the name of the organization
+ * @attribute available_schedules   It represents the available schedules over a year. It is a list of pairs, each representing
+ *                                  a week as a key, and as a value has a list with all available schedules for it.
+ * @attribute reserved_schedules    Similarly to available_schedules, it is a list of pairs, each representing a week
+ *                                  as a key, and it's value is a list of pairs, with a schedule as a key and an event
+ *                                  as it's value.
+ * @attribute scenes                A list of the available scenes in which we can reserve events.
+ * @attribute reserved_scene        A special scene in which we do not reserve any event. Can be used for programming
+ *                                  last-minute events.
+ */
+
 public class CulturalBuilding { //ArrayList<Pair<Integer,>>
     private final String name;
     private ArrayList<Pair<Integer, ArrayList<Schedule>>> available_schedules = new ArrayList<>();
@@ -22,18 +36,36 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         this.available_schedules.addAll(available_schedules);
     }
 
+    /**
+     *
+     * @return the name of the organization
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return the list of reserved schedules for the year
+     */
     public ArrayList<Pair<Integer, ArrayList<Pair<Schedule, Event>>>> getReserved_schedules() {
         return reserved_schedules;
     }
 
+    /**
+     * With the parameter passed, parse the information from strings, initialize a new scene, adding it to our scene
+     * list, and add it's schedules to our available_schedules list. From starting week passed as a parameter, until
+     * the end of the year, we create for each day of the week a schedule corresponding to the opening time and closing
+     * time passed as parameters.
+     *
+     * @param scene Information passed by a user in order to instantiate a new scene. Contains the capacity, opening
+     *              week, as well as opening and closing times.
+     */
     public void addScene(String[] scene) {
         if (scene.length != 4) {
             throw new IllegalArgumentException("Wrong scene string input.");
         }
+        // Parse the string array into usable data
         int capacity = Integer.parseInt(scene[0]);
         String[] start_time_string = scene[1].split("-");
         String[] end_time_string = scene[2].split("-");
@@ -65,14 +97,29 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         }
     }
 
+    /**
+     *
+     * @param id The identifier of the scene to remove.
+     */
+
     public void removeScene(int id) {
         scenes.removeIf(x -> x.getId() == id);
     }
+
+    /**
+     * Creates a reserved scene, to be used for last-minute reservations.
+     * @param scene The scene to use as a special case.
+     */
 
     public void setUpReservedScene(Scene scene) {
         this.reserved_scene = scene;
     }
 
+    /**
+     * Adds a pair in our list of reserved schedules, ready to accept new event reservations.
+     *
+     * @param week_number  The week to instantiate.
+     */
     public void addWeek(int week_number) {
         if (week_number < 1 || week_number > 53) {
             throw new IllegalArgumentException("Wrong week number input");
@@ -80,6 +127,18 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         reserved_schedules.add(new Pair<>(week_number, new ArrayList<>()));
     }
 
+    /**
+     * Main method which programs a given event for a specific week. After passing different checks to see if we can
+     * reserve the event, we add the asked schedule to our reserved schedules list. Finally, we replace our old
+     * available schedule with the remaining time for the day.
+     *
+     * For example if we open at 14h00 and close at 18h00, and must reserve a concert at 15h00-16h30, our resulting
+     * available schedule will be 14h00-15h00 and 16h30-18h00.
+     * This can be useful for reserving multiple events in the same day.
+     *
+     * @param event The event to reserve
+     * @param week  The week in which to reserve the event
+     */
     public void programEvent(Event event, int week) {
         // Iterate through all weeks
         ListIterator<Pair<Integer, ArrayList<Schedule>>> week_iterator = available_schedules.listIterator();
@@ -150,6 +209,13 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         }
     }
 
+    /**
+     * For the given week, call the programEvent method to reserve all events given in string_events. Before calling
+     * the method, each string array in the list is parsed into an Event object.
+     *
+     * @param string_events A list of events to reserve
+     * @param week  The week in which we want to reserve the events
+     */
     public void generateWeeklyProgram(ArrayList<String[]> string_events, int week) {
         for (String[] string_event : string_events) {
             Event new_event = new Event(string_event);
@@ -168,6 +234,12 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
                 '}';
     }
 
+    /**
+     * Iterates through our reserved schedules, creating a list of EventTableInformation objects that can be used
+     * by the application layer to visualize data.
+     *
+     * @return An observable list, that can be used by the application layer to visualize our organization's data.
+     */
     public ObservableList<EventTableInformation> getEventTableInformationFromReservedSchedules() {
         ObservableList<EventTableInformation> event_table_information = FXCollections.observableArrayList();
         for (Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_schedule : reserved_schedules) {
@@ -188,6 +260,9 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         return event_table_information;
     }
 
+    /**
+     * Method that populates our organization with initial data.
+     */
     public void loadInitialTestData() {
         TestData.loadTestData(this);
     }
