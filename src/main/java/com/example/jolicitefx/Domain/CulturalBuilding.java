@@ -82,7 +82,6 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
 
     public void programEvent(Event event, int week) {
         // Iterate through all weeks
-        System.out.println("Event's week" + week + "\n");
         ListIterator<Pair<Integer, ArrayList<Schedule>>> week_iterator = available_schedules.listIterator();
         while (week_iterator.hasNext()) {
             Pair<Integer, ArrayList<Schedule>> week_schedules = week_iterator.next();
@@ -90,7 +89,6 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
 
             // Go to week asked
             if (week_key == week) {
-                System.out.println("Week is good\n");
                 ArrayList<Schedule> week_available_schedules = week_schedules.getValue();
                 ListIterator<Schedule> available_schedule_iterator = week_available_schedules.listIterator();
 
@@ -150,8 +148,6 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
                 }
             }
         }
-        System.out.println("APRES:" + reserved_schedules + "\n");
-        System.out.println("AVAILABLE APRES: " + available_schedules);
     }
 
     public void generateWeeklyProgram(ArrayList<String[]> string_events, int week) {
@@ -176,20 +172,23 @@ public class CulturalBuilding { //ArrayList<Pair<Integer,>>
         ArrayList<String[]> string_reserved_schedules = new ArrayList<>();
         for (Pair<Integer, ArrayList<Pair<Schedule, Event>>> reserved_schedule : reserved_schedules) {
             int week = reserved_schedule.getKey();
-            String[] string_reserved_schedule = new String[6];
             for (Pair<Schedule, Event> schedule : reserved_schedule.getValue()) {
+                String[] string_reserved_schedule = new String[6];
+                System.out.println("ARTIST NAMES: "+schedule.getValue().getSpectacle().getName());
                 string_reserved_schedule[0] = String.valueOf(schedule.getKey().getScene_id());
                 string_reserved_schedule[1] = String.valueOf(schedule.getValue().getSpectacle().getName());
                 string_reserved_schedule[2] = String.valueOf(week);
                 string_reserved_schedule[3] = schedule.getKey().getDay().name();
                 string_reserved_schedule[4] = String.valueOf(schedule.getKey().getTime().toString());
                 string_reserved_schedule[5] = String.valueOf(schedule.getValue().getCapacity_needed());
+                string_reserved_schedules.add(string_reserved_schedule);
             }
-            string_reserved_schedules.add(string_reserved_schedule);
+
         }
 
         ObservableList<EventTableInformation> event_table_information = FXCollections.observableArrayList();
         for (String[] string_info : string_reserved_schedules) {
+            System.out.println(string_info[1]);
             event_table_information.add(new EventTableInformation(string_info[0], string_info[1], string_info[2], string_info[3], string_info[4],
                     string_info[5]));
         }
